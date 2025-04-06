@@ -108,6 +108,33 @@ body {
     font-size: 13px;
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 100px;
+    max-width: 200px;
+}
+
+.tab-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 8px;
+}
+
+.tab-close {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 14px;
+    height: 14px;
+    width: 14px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.tab-close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
 }
 
 .tab.active {
