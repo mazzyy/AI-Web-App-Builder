@@ -13,8 +13,47 @@ class EditorComponent {
       // Get the code output element
       this.codeOutput = this.container.querySelector('#codeOutput');
       
+      // Make code editable
+      this.makeCodeEditable();
+      
       // Update content for the current file
       this.updateContent();
+    }
+  
+    makeCodeEditable() {
+      if (!this.codeOutput) return;
+      
+      // Add contenteditable attribute
+      this.codeOutput.setAttribute('contenteditable', 'true');
+      
+      // Add event listener for changes
+      this.codeOutput.addEventListener('input', () => {
+        // Save changes to project files
+        if (this.projectFiles[this.currentFile]) {
+          this.projectFiles[this.currentFile].content = this.codeOutput.textContent;
+          
+          // Dispatch a content change event to trigger preview update
+          const event = new CustomEvent('contentchanged', {
+            bubbles: true,
+            detail: { 
+              fileName: this.currentFile,
+              content: this.codeOutput.textContent
+            }
+          });
+          this.container.dispatchEvent(event);
+        }
+      });
+      
+      // Add keyboard shortcuts and prevent tab from losing focus
+      this.codeOutput.addEventListener('keydown', (e) => {
+        // Handle tab key for indentation
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          
+          // Insert tab at cursor position
+          document.execCommand('insertText', false, '    ');
+        }
+      });
     }
   
     render() {
@@ -103,6 +142,16 @@ class EditorComponent {
         if (fileName === this.currentFile) {
           this.updateContent();
         }
+        
+        // Dispatch a content change event
+        const event = new CustomEvent('contentchanged', {
+          bubbles: true,
+          detail: { 
+            fileName: fileName,
+            content: content
+          }
+        });
+        this.container.dispatchEvent(event);
       }
     }
   }
