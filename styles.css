@@ -459,33 +459,81 @@ body {
     overflow-y: hidden;
 }
 
-/* Code editor styles - make it editable */
+/* Code editor styles - for syntax highlighting */
 .code-output {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.5;
-    color: var(--code-color);
     margin: 0;
     padding: 0;
     white-space: pre-wrap;
     outline: none; /* Remove outline when focused */
+    width: 100%;
+    height: 100%;
 }
 
-/* Syntax highlighting (basic) */
-.code-output .keyword {
-    color: #569cd6;
+.code-output code {
+    font-family: 'Courier New', monospace;
+    background: transparent !important;
+    padding: 0 !important;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
-.code-output .string {
-    color: #ce9178;
+/* Override highlight.js styles */
+.hljs {
+    background: transparent !important;
+    padding: 0 !important;
 }
 
-.code-output .comment {
-    color: #6a9955;
+/* Custom syntax colors - can be adjusted */
+.hljs-keyword {
+    color: #569cd6 !important;
 }
 
-.code-output .tag {
-    color: #569cd6;
+.hljs-string {
+    color: #ce9178 !important;
+}
+
+.hljs-comment {
+    color: #6a9955 !important;
+}
+
+.hljs-function {
+    color: #dcdcaa !important;
+}
+
+.hljs-variable {
+    color: #9cdcfe !important;
+}
+
+.hljs-property {
+    color: #9cdcfe !important;
+}
+
+.hljs-number {
+    color: #b5cea8 !important;
+}
+
+.hljs-operator {
+    color: #d4d4d4 !important;
+}
+
+.hljs-punctuation {
+    color: #d4d4d4 !important;
+}
+
+.hljs-tag {
+    color: #569cd6 !important;
+}
+
+.hljs-attr {
+    color: #9cdcfe !important;
+}
+
+.hljs-selector-class {
+    color: #d7ba7d !important;
 }
 
 /* Download button and project controls */

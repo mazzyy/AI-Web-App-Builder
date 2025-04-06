@@ -6,11 +6,44 @@
     <title>AI Web Builder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- Add this to your index.html file in the head section -->
+    <!-- Import JSZip and FileSaver.js for downloading projects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <!-- Syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/html.min.js"></script>
 </head>
 <body class="dark-theme">
+    <!-- Project controls -->
+    <div class="project-controls">
+        <button id="downloadProjectBtn" class="download-btn">
+            <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Project
+        </button>
+        <div class="controls-dropdown">
+            <button id="controlsBtn" class="controls-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="12" cy="5" r="1"></circle>
+                    <circle cx="12" cy="19" r="1"></circle>
+                </svg>
+                More
+            </button>
+            <div id="controlsMenu" class="controls-menu">
+                <div class="controls-menu-item" id="downloadCurrentBtn">Download Current File</div>
+                <div class="controls-menu-item" id="exportHtmlBtn">Export as Single HTML</div>
+            </div>
+        </div>
+    </div>
+
     <div class="main-container">
         <!-- Left sidebar -->
         <div class="sidebar">
@@ -19,27 +52,31 @@
             </div>
             <div class="sidebar-content">
                 <ul class="folder-list">
+                    <li class="folder active">
+                        <span class="folder-icon">▼</span> config
+                        <ul class="file-list">
+                            <li class="file">_pycache_</li>
+                            <li class="file">_init_.py</li>
+                            <li class="file">settings.py</li>
+                        </ul>
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> data
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> logs
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> src
+                    </li>
                     <li class="folder project-files">
-                        <span class="folder-icon">▼</span> Frontend
+                        <span class="folder-icon">▼</span> project
                         <ul class="file-list">
                             <li class="file active-file" data-file="index.html">index.html</li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            
-            <div class="sidebar-content">
-                <ul class="folder-list">
-                    <li class="folder project-files">
-                        <span class="folder-icon">▼</span> Backend
-                        <ul class="file-list">
-                            <li class="file active-file" data-file="index.html">App.py</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            
-
         </div>
 
         <!-- Center code editor -->
@@ -95,6 +132,7 @@
     <script src="header.js"></script>
     <script src="editor.js"></script>
     <script src="command.js"></script>
+    <script src="download.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
