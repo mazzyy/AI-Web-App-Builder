@@ -16,9 +16,23 @@
             </div>
             <div class="sidebar-content">
                 <ul class="folder-list">
-                    
-                    
-                    
+                    <li class="folder active">
+                        <span class="folder-icon">▼</span> config
+                        <ul class="file-list">
+                            <li class="file">_pycache_</li>
+                            <li class="file">_init_.py</li>
+                            <li class="file">settings.py</li>
+                        </ul>
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> data
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> logs
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> src
+                    </li>
                     <li class="folder project-files">
                         <span class="folder-icon">▼</span> project
                         <ul class="file-list">
@@ -37,8 +51,8 @@
             <!-- Component 2: Editor -->
             <div id="editor-component"></div>
             
-            <!-- Component 3: Command input -->
-            <div id="command-component"></div>
+            <!-- Component 3: Command input (always at bottom) -->
+            <div id="command-component" class="command-fixed"></div>
         </div>
 
         <!-- Right preview panel -->

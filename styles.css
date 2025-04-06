@@ -5,7 +5,7 @@
     --bg-lighter: #252526;
     --text-light: #e0e0e0;
     --text-muted: #6c757d;
-    --accent-blue: #0d6efd;
+    --accent-blue: #0066ff;
     --border-color: #333;
     --code-color: #acacac;
     --sidebar-width: 220px;
@@ -81,12 +81,19 @@ body {
     color: var(--text-light);
 }
 
+.file.active-file {
+    color: #ffffff;
+    font-weight: 500;
+}
+
 /* Editor styles */
 .editor-container {
     width: var(--editor-width);
     background-color: var(--bg-dark);
     display: flex;
     flex-direction: column;
+    height: 100vh; /* Ensure it takes full height */
+    overflow: hidden; /* Prevent scrolling within container */
 }
 
 .editor-tabs {
@@ -100,6 +107,7 @@ body {
     border-right: 1px solid var(--border-color);
     font-size: 13px;
     cursor: pointer;
+    position: relative;
 }
 
 .tab.active {
@@ -108,10 +116,25 @@ body {
     margin-bottom: -1px;
 }
 
+.new-tab {
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-tab:hover {
+    color: var(--text-light);
+}
+
 .editor-content {
     flex: 1;
     display: flex;
     overflow: hidden;
+    min-height: 0; /* Allow flex container to shrink */
 }
 
 .line-numbers {
@@ -134,30 +157,7 @@ body {
     padding: 10px;
     overflow-y: auto;
     position: relative;
-}
-
-.prompt-area {
-    width: 100%;
-    min-height: 100px;
-    background-color: var(--bg-lighter);
-    color: var(--text-light);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 10px;
-    font-family: inherit;
-    resize: vertical;
-    margin-bottom: 10px;
-    outline: none;
-}
-
-.generate-btn {
-    background-color: var(--accent-blue);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 20px;
+    max-height: calc(100vh - 50px - 50px); /* Subtract header and footer heights */
 }
 
 .code-output {
@@ -171,12 +171,16 @@ body {
 }
 
 .editor-footer {
-    height: 40px;
+    height: 50px;
     background-color: var(--bg-darker);
     border-top: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     padding: 0 10px;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
 }
 
 .command-input {
@@ -187,6 +191,7 @@ body {
 
 .command-icon {
     margin-right: 10px;
+    color: var(--text-muted);
 }
 
 .command-text {
@@ -195,6 +200,18 @@ body {
     border: none;
     color: var(--text-light);
     outline: none;
+    height: 36px;
+}
+
+.generate-btn {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 14px;
 }
 
 /* Preview styles */
@@ -205,20 +222,30 @@ body {
     flex-direction: column;
 }
 
+.preview-header {
+    background-color: var(--bg-darker);
+    color: var(--text-light);
+    padding: 8px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.preview-header h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+}
+
 .preview-content {
     flex: 1;
-    padding: 20px;
+    padding: 0;
     overflow-y: auto;
     background-color: white;
     color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .preview-text {
     text-align: center;
+    padding: 50px 20px;
 }
 
 .preview-text h1 {
@@ -231,9 +258,105 @@ body {
     height: 50px;
 }
 
+/* Modal for new file creation */
+.file-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--bg-lighter);
+    border-radius: 6px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.close-modal {
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 8px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-light);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    color: var(--text-light);
+    margin-right: 10px;
+}
+
+.create-btn {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
 /* Spinner styling */
 .spinner-border {
     margin-right: 8px;
+    width: 16px;
+    height: 16px;
 }
 
 /* Responsive styling */
