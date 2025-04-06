@@ -17,10 +17,11 @@ Generate web code instantly using AI-powered natural language prompts!
 
 ## ✨ Current Features
 
-- 🚀 AI-powered code generation
-- 📝 Supports HTML, CSS, JavaScript
-- 🖥️ Real-time web code preview
-- 🌐 Intuitive web-based editor
+🚀 AI-powered code generation
+📝 Supports HTML, CSS, JavaScript
+🖥️ Real-time web code preview
+🌐 Intuitive web-based editor
+⚡ Python FastAPI backend integration
 
 ## 🔮 Planned Features & Roadmap
 
@@ -151,7 +152,7 @@ MIT License - Open and free for all uses
 
 - 📢 Issues: [GitHub Issues](link-to-issues)
 - 💬 Discussions: [GitHub Discussions](link-to-discussions)
-- 📧 Contact: [Your Email/Contact Method]
+- 📧 Contact: musawar.soomro25@gmail.com
 
 ---
 
