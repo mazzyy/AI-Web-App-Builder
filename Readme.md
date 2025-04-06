@@ -1,4 +1,4 @@
-# 🤖 AI Web Code Generator
+# 🤖 AI-Web-App-Builder
 
 Generate web code instantly using AI-powered natural language prompts!
 
@@ -60,6 +60,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 5000
 ```
 ![alt text](image.png)
+![alt text](image-1.png)
 ### Frontend
 - Open `index.html` in a browser
 - Ensure backend is running
