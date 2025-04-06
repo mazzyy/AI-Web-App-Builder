@@ -27,6 +27,7 @@ class AppManager {
       this.initPreview();
       this.initFolders();
       this.initModalEvents();
+      this.initDownloadButtons();
     }
   
     initComponents() {
@@ -135,6 +136,31 @@ class AppManager {
       if (this.createFileBtn) {
         this.createFileBtn.addEventListener('click', () => {
           this.createNewFile();
+        });
+      }
+    }
+  
+    // Initialize download buttons
+    initDownloadButtons() {
+      const downloadBtn = document.getElementById('downloadProjectBtn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          this.downloadProject();
+        });
+      }
+      
+      const downloadCurrentBtn = document.getElementById('downloadCurrentBtn');
+      if (downloadCurrentBtn) {
+        downloadCurrentBtn.addEventListener('click', () => {
+          const currentFile = this.editorComponent.getCurrentFile();
+          this.downloadFile(currentFile);
+        });
+      }
+      
+      const exportHtmlBtn = document.getElementById('exportHtmlBtn');
+      if (exportHtmlBtn) {
+        exportHtmlBtn.addEventListener('click', () => {
+          this.exportAsSingleHtml();
         });
       }
     }
@@ -321,19 +347,7 @@ class AppManager {
       
       // Here you could implement an actual save to server
       // For now, just show a confirmation message
-      const message = document.createElement('div');
-      message.className = 'save-message';
-      message.textContent = `${currentFile} saved successfully`;
-      
-      document.body.appendChild(message);
-      
-      // Remove the message after 2 seconds
-      setTimeout(() => {
-        message.classList.add('fade-out');
-        setTimeout(() => {
-          document.body.removeChild(message);
-        }, 500);
-      }, 1500);
+      this.showNotification(`${currentFile} saved successfully`);
       
       console.log(`File ${currentFile} saved with content:`, content);
     }
@@ -410,6 +424,123 @@ class AppManager {
       }
       
       return htmlContent;
+    }
+  
+    // Download the entire project as zip
+    async downloadProject() {
+      try {
+        // Create a new JSZip instance directly
+        const zip = new JSZip();
+        
+        // Add all files to the zip
+        for (const [fileName, fileData] of Object.entries(this.projectFiles)) {
+          zip.file(fileName, fileData.content);
+        }
+        
+        // Generate and download the zip
+        const content = await zip.generateAsync({type: "blob"});
+        
+        // Create download link and trigger download
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(content);
+        downloadLink.download = "web-project.zip";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        this.showNotification("Project downloaded successfully");
+      } catch (error) {
+        console.error("Download error:", error);
+        this.showNotification("Error downloading project: " + error.message, "error");
+      }
+    }
+  
+    // Download a single file
+    downloadFile(fileName) {
+      if (!this.projectFiles[fileName]) {
+        this.showNotification("File not found", "error");
+        return;
+      }
+      
+      try {
+        // Create a blob with the file content
+        const mimeType = this.getMimeType(fileName);
+        const blob = new Blob([this.projectFiles[fileName].content], {type: mimeType});
+        
+        // Create download link and trigger download
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = fileName;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        this.showNotification(`${fileName} downloaded successfully`);
+      } catch (error) {
+        console.error(`Error downloading ${fileName}:`, error);
+        this.showNotification(`Error downloading file: ${error.message}`, "error");
+      }
+    }
+    
+    // Export as single HTML file
+    exportAsSingleHtml() {
+      try {
+        // Find an HTML file to use as base
+        const htmlFile = Object.keys(this.projectFiles).find(file => file.endsWith('.html')) || '';
+        
+        if (!htmlFile || !this.projectFiles[htmlFile]) {
+          throw new Error("No HTML file found");
+        }
+        
+        // Get the HTML with all assets
+        const htmlContent = this.prepareHtmlWithAssets(htmlFile);
+        
+        // Create download link
+        const blob = new Blob([htmlContent], {type: 'text/html'});
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = "exported-project.html";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        this.showNotification("Project exported successfully");
+      } catch (error) {
+        console.error("Export error:", error);
+        this.showNotification("Error exporting project: " + error.message, "error");
+      }
+    }
+  
+    // Get MIME type for file
+    getMimeType(fileName) {
+      const extension = fileName.split('.').pop().toLowerCase();
+      const mimeTypes = {
+        'html': 'text/html',
+        'css': 'text/css',
+        'js': 'text/javascript',
+        'json': 'application/json',
+        'txt': 'text/plain'
+      };
+      return mimeTypes[extension] || 'text/plain';
+    }
+  
+    // Show notification
+    showNotification(message, type = "success") {
+      const notification = document.createElement('div');
+      notification.className = 'save-message';
+      if (type === "error") {
+        notification.style.backgroundColor = "#f44336";
+      }
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 500);
+      }, 2000);
     }
   
     // Get default content for new files

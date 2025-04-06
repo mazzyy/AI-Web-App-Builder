@@ -459,11 +459,12 @@ body {
     overflow-y: hidden;
 }
 
-/* Code editor styles - for syntax highlighting */
+/* Code editor styles */
 .code-output {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.5;
+    color: #acacac;
     margin: 0;
     padding: 0;
     white-space: pre-wrap;
@@ -472,68 +473,53 @@ body {
     height: 100%;
 }
 
-.code-output code {
-    font-family: 'Courier New', monospace;
-    background: transparent !important;
-    padding: 0 !important;
-    display: block;
-    width: 100%;
-    height: 100%;
+/* Editor content syntax highlighting - simulate with colors */
+.code-output .keyword {
+    color: #569cd6;
 }
 
-/* Override highlight.js styles */
-.hljs {
-    background: transparent !important;
-    padding: 0 !important;
+.code-output .string {
+    color: #ce9178;
 }
 
-/* Custom syntax colors - can be adjusted */
-.hljs-keyword {
-    color: #569cd6 !important;
+.code-output .comment {
+    color: #6a9955;
 }
 
-.hljs-string {
-    color: #ce9178 !important;
+.code-output .function {
+    color: #dcdcaa;
 }
 
-.hljs-comment {
-    color: #6a9955 !important;
+.code-output .variable {
+    color: #9cdcfe;
 }
 
-.hljs-function {
-    color: #dcdcaa !important;
+.code-output .property {
+    color: #9cdcfe;
 }
 
-.hljs-variable {
-    color: #9cdcfe !important;
+.code-output .number {
+    color: #b5cea8;
 }
 
-.hljs-property {
-    color: #9cdcfe !important;
+.code-output .operator {
+    color: #d4d4d4;
 }
 
-.hljs-number {
-    color: #b5cea8 !important;
+.code-output .punctuation {
+    color: #d4d4d4;
 }
 
-.hljs-operator {
-    color: #d4d4d4 !important;
+.code-output .tag {
+    color: #569cd6;
 }
 
-.hljs-punctuation {
-    color: #d4d4d4 !important;
+.code-output .attr {
+    color: #9cdcfe;
 }
 
-.hljs-tag {
-    color: #569cd6 !important;
-}
-
-.hljs-attr {
-    color: #9cdcfe !important;
-}
-
-.hljs-selector-class {
-    color: #d7ba7d !important;
+.code-output .selector-class {
+    color: #d7ba7d;
 }
 
 /* Download button and project controls */

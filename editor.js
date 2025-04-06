@@ -20,59 +20,6 @@ class EditorComponent {
       this.updateContent();
     }
   
-    makeCodeEditable() {
-      if (!this.codeOutput) return;
-      
-      // Add handler for the contenteditable element
-      this.codeOutput.addEventListener('input', (e) => {
-        // Get the content - need to carefully extract the text without the highlighting
-        const content = this.getEditedContent();
-        
-        // Save the content to the current file
-        if (this.projectFiles[this.currentFile]) {
-          this.projectFiles[this.currentFile].content = content;
-          
-          // Update line numbers
-          this.updateLineNumbers(content);
-          
-          // Dispatch a content change event
-          const event = new CustomEvent('contentchanged', {
-            bubbles: true,
-            detail: { 
-              fileName: this.currentFile,
-              content: content
-            }
-          });
-          this.container.dispatchEvent(event);
-        }
-      });
-      
-      // Add keyboard shortcuts
-      this.codeOutput.addEventListener('keydown', (e) => {
-        // Handle tab key for indentation
-        if (e.key === 'Tab') {
-          e.preventDefault();
-          
-          // Insert tab at cursor position
-          document.execCommand('insertText', false, '    ');
-        }
-      });
-    }
-    
-    // Get the actual text content from the editable highlighted code
-    getEditedContent() {
-      if (!this.codeOutput) return '';
-      
-      // Get the text from the code element inside the pre
-      const codeEl = this.codeOutput.querySelector('code');
-      if (codeEl) {
-        return codeEl.textContent;
-      }
-      
-      // Fallback if code element doesn't exist
-      return this.codeOutput.textContent;
-    }
-  
     render() {
       // Create editor content container
       const editorContent = document.createElement('div');
@@ -113,68 +60,76 @@ class EditorComponent {
       
       const fileContent = this.projectFiles[this.currentFile]?.content || '';
       
-      // Apply syntax highlighting based on file type
-      const fileType = this.getFileType(this.currentFile);
-      this.applyHighlighting(fileContent, fileType);
+      // Set text content directly for editing
+      this.codeOutput.textContent = fileContent;
       
       // Update line numbers based on content
       this.updateLineNumbers(fileContent);
     }
-    
-    // Get file type from extension
-    getFileType(fileName) {
-      const extension = fileName.split('.').pop().toLowerCase();
-      switch (extension) {
-        case 'html':
-          return 'html';
-        case 'css':
-          return 'css';
-        case 'js':
-          return 'javascript';
-        default:
-          return 'plaintext';
-      }
-    }
-    
-    // Apply syntax highlighting
-    applyHighlighting(content, fileType) {
-      // Clear previous content
-      this.codeOutput.innerHTML = '';
-      
-      // Create a temporary container for highlighting
-      const preEl = document.createElement('code');
-      preEl.className = `hljs language-${fileType}`;
-      preEl.textContent = content;
-      
-      // Apply highlighting if hljs is available
-      if (window.hljs) {
-        window.hljs.highlightElement(preEl);
-      }
-      
-      // Put the highlighted content into the editor
-      this.codeOutput.appendChild(preEl);
-      
-      // Make it editable
-      this.codeOutput.setAttribute('contenteditable', 'true');
-      preEl.setAttribute('contenteditable', 'true');
-    }
   
-    // Update the line numbers based on content
+    // Update line numbers based on content
     updateLineNumbers(content) {
-      const lineCount = (content.match(/\n/g) || []).length + 1;
+      const lines = content.split('\n');
+      const lineCount = lines.length;
       const lineNumbers = this.container.querySelector('.line-numbers');
       
-      // Only update if we need more lines
-      if (lineCount > this.lineCount) {
-        lineNumbers.innerHTML = '';
-        this.lineCount = Math.max(lineCount, this.lineCount);
-        
-        for (let i = 1; i <= this.lineCount; i++) {
-          const lineNumber = document.createElement('div');
-          lineNumber.textContent = i;
-          lineNumbers.appendChild(lineNumber);
-        }
+      // Clear existing line numbers
+      lineNumbers.innerHTML = '';
+      
+      // Add new line numbers
+      for (let i = 1; i <= lineCount; i++) {
+        const lineNumber = document.createElement('div');
+        lineNumber.textContent = i;
+        lineNumbers.appendChild(lineNumber);
       }
+      
+      // Add a few extra line numbers to allow for new content
+      for (let i = lineCount + 1; i <= lineCount + 10; i++) {
+        const lineNumber = document.createElement('div');
+        lineNumber.textContent = i;
+        lineNumbers.appendChild(lineNumber);
+      }
+    }
+  
+    makeCodeEditable() {
+      if (!this.codeOutput) return;
+      
+      // Add contenteditable attribute
+      this.codeOutput.setAttribute('contenteditable', 'true');
+      
+      // Add event listener for changes
+      this.codeOutput.addEventListener('input', () => {
+        // Save changes to project files
+        if (this.projectFiles[this.currentFile]) {
+          // Get the content directly from the element
+          const content = this.codeOutput.textContent;
+          this.projectFiles[this.currentFile].content = content;
+          
+          // Update line numbers
+          this.updateLineNumbers(content);
+          
+          // Dispatch content change event
+          const event = new CustomEvent('contentchanged', {
+            bubbles: true,
+            detail: { 
+              fileName: this.currentFile,
+              content: content
+            }
+          });
+          this.container.dispatchEvent(event);
+        }
+      });
+      
+      // Add keyboard shortcuts and prevent tab from losing focus
+      this.codeOutput.addEventListener('keydown', (e) => {
+        // Handle tab key for indentation
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          
+          // Insert tab at cursor position
+          document.execCommand('insertText', false, '    ');
+        }
+      });
     }
   
     // Switch to a different file

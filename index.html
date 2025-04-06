@@ -9,13 +9,6 @@
     <!-- Import JSZip and FileSaver.js for downloading projects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    
-    <!-- Syntax highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/html.min.js"></script>
 </head>
 <body class="dark-theme">
     <!-- Project controls -->
@@ -26,7 +19,7 @@
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            Download Project
+          
         </button>
         <div class="controls-dropdown">
             <button id="controlsBtn" class="controls-btn">
@@ -35,7 +28,7 @@
                     <circle cx="12" cy="5" r="1"></circle>
                     <circle cx="12" cy="19" r="1"></circle>
                 </svg>
-                More
+                
             </button>
             <div id="controlsMenu" class="controls-menu">
                 <div class="controls-menu-item" id="downloadCurrentBtn">Download Current File</div>
@@ -127,6 +120,105 @@
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="header.js"></script>
+    <script src="editor.js"></script>
+    <script src="command.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>-icon">▶</span> data
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> logs
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> src
+                    </li>
+                    <li class="folder project-files">
+                        <span class="folder-icon">▼</span> project
+                        <ul class="file-list">
+                            <li class="file active-file" data-file="index.html">index.html</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Center code editor -->
+        <div class="editor-container">
+            <!-- Component 1: Header/Tabs -->
+            <div id="header-component"></div>
+            
+            <!-- Component 2: Editor -->
+            <div id="editor-component"></div>
+            
+            <!-- Component 3: Command input (always at bottom) -->
+            <div id="command-component" class="command-fixed"></div>
+        </div>
+
+        <!-- Right preview panel -->
+        <div class="preview-container">
+            <div class="preview-header">
+                <h4>Preview</h4>
+            </div>
+            <div class="preview-content" id="previewContent"></div>
+        </div>
+    </div>
+
+    <!-- New File Modal -->
+    <div class="file-modal" id="newFileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Create New File</h4>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="newFileName">File Name:</label>
+                    <input type="text" id="newFileName" placeholder="e.g., styles.css">
+                </div>
+                <div class="input-group">
+                    <label for="fileType">File Type:</label>
+                    <select id="fileType">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="js">JavaScript</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="create-btn">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test download script -->
+    <script>
+        document.getElementById('testDownloadBtn').addEventListener('click', async function() {
+            try {
+                console.log("Testing direct download...");
+                
+                // Create a simple zip
+                const zip = new JSZip();
+                
+                // Add a test file
+                zip.file("test.txt", "This is a test file content");
+                
+                // Generate the zip
+                const content = await zip.generateAsync({ type: "blob" });
+                
+                // Download the zip
+                saveAs(content, "test-download.zip");
+                
+                console.log("Test download complete");
+            } catch (error) {
+                console.error("Test download failed:", error);
+                alert("Download test failed: " + error.message);
+            }
+        });
+    </script>
 
     <!-- Scripts -->
     <script src="header.js"></script>
