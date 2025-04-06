@@ -494,7 +494,7 @@ class AppManager {
           Ask me anything.
       </h1>
       <p>Type your website description in the command area below and click Generate</p>
-      <img src="https://enzostivs-deepsite.hf.space/arrow.svg">
+      <img src="arrow.svg">
       <script></script>
   </body>
   </html>`;
