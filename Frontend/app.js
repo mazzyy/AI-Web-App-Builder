@@ -5,7 +5,8 @@ class AppManager {
         'index.html': {
           content: this.getDefaultHtmlContent(),
           type: 'html'
-        }
+        },
+      
       };
       
       // API endpoint
