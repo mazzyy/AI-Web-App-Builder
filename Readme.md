@@ -1,39 +1,78 @@
-# 🤖 AI-Web-App-Builder
+# 🤖 AI Web Code Generator
 
 Generate web code instantly using AI-powered natural language prompts!
 
-## ✨ Features
+## 🖼️ Product Screenshots
+
+<!-- Replace these with actual paths to your screenshots -->
+
+### Main Interface
+![Main Application Interface](image.png)
+*The central workspace showing code editor, preview, and AI command input*
+
+### Code Generation in Action
+![AI Code Generation](image-1.png)
+*Demonstrating create new files
+
+
+## ✨ Current Features
 
 - 🚀 AI-powered code generation
 - 📝 Supports HTML, CSS, JavaScript
 - 🖥️ Real-time web code preview
 - 🌐 Intuitive web-based editor
 
+## 🔮 Planned Features & Roadmap
+
+
+### 🧩 Code Generation Enhancements
+- [ ] Multiple Language Model Support
+  - [x] Google Gemini
+  - [ ] OpenAI GPT
+  - [ ] Anthropic Claude
+  - [ ] Local LLM Integration
+
+### 🖌️ Template & Preset Management
+- [ ] Pre-built website templates
+  - Landing pages
+  - Admin dashboards
+  - Portfolio sites
+  - E-commerce layouts
+- [ ] Custom template creation and saving
+- [ ] One-click template customization
+
+### 🌐 Backend Flexibility
+- [ ] Multi-language Backend Support
+  - [x] Python (FastAPI)
+  - [ ] Node.js (Express)
+  - [ ] Rust (Rocket)
+  - [ ] Go (Gin)
+  - [ ] Java (Spring Boot)
+
+### 🛠️ Advanced Development Tools
+- [ ] Integrated terminal
+- [ ] Code snippet library
+- [ ] AI-powered code completion
+- [ ] Real-time collaboration features
+- [ ] Export/Import project configurations
+
+### 🔧 Customization Options
+- [ ] Configurable AI parameters
+- [ ] Custom prompt engineering
+- [ ] Theme and UI customization
+- [ ] Keyboard shortcut configuration
+
 ## 🛠️ Tech Stack
 
-**Frontend:**
-- Vanilla JavaScript
-- HTML5
-- CSS3
+**Current:**
+- Frontend: Vanilla JavaScript, HTML5, CSS3
+- Backend: FastAPI, Google Gemini AI
+- Language: Python
 
-**Backend:**
-- FastAPI
-- Google Gemini AI
-- Python
-
-## 📦 Project Structure
-
-```
-.
-├── Frontend/
-│   ├── index.html
-│   ├── styles.css
-│   └── scripts/
-├── Backend/
-│   ├── main.py
-│   └── requirements.txt
-└── README.md
-```
+**Future Targets:**
+- Multiple frontend frameworks
+- Microservice architecture
+- Containerization (Docker, Kubernetes)
 
 ## 🚀 Quick Start
 
@@ -59,38 +98,63 @@ pip install -r requirements.txt
 # Run server
 uvicorn main:app --reload --port 5000
 ```
-### Image-1
-![alt text](image.png)
-### Image-2
-![alt text](image-1.png)
+
 ### Frontend
 - Open `index.html` in a browser
 - Ensure backend is running
 
-
-## 🎯 Usage Examples
-
-- Generate a landing page
-- Create responsive navigation
-- Write JavaScript utilities
-
 ## 🤝 Contributing
 
+Interested in contributing? We welcome contributions across various domains:
+
+1. **Feature Development**
+   - Implement new language model integrations
+   - Develop backend support for additional languages
+   - Create UI/UX improvements
+
+2. **Bug Fixes**
+   - Identify and resolve issues
+   - Improve code generation accuracy
+   - Enhance performance
+
+3. **Documentation**
+   - Improve README and inline documentation
+   - Create user guides
+   - Write technical documentation
+
+**Contribution Steps:**
 1. Fork the repository
 2. Create a feature branch
 3. Commit changes
 4. Push to the branch
 5. Open a Pull Request
 
+## 🌟 Vision & Philosophy
+
+Our goal is to create a flexible, extensible AI-powered development tool that:
+- Democratizes web development
+- Reduces boilerplate coding
+- Provides an intuitive, intelligent coding assistant
+- Supports developers of all skill levels
+
+## 📊 Project Status
+
+- **Current Version:** 0.1.0 (Prototype)
+- **Active Development:** Ongoing
+- **Stability:** Experimental
+
 ## 📄 License
 
-MIT License
+MIT License - Open and free for all uses
 
-## 🌟 Acknowledgments
+## 🌐 Community & Support
 
-- [Google Gemini AI](https://deepmind.google/technologies/gemini/)
-- [FastAPI](https://fastapi.tiangolo.com/)
+- 📢 Issues: [GitHub Issues](link-to-issues)
+- 💬 Discussions: [GitHub Discussions](link-to-discussions)
+- 📧 Contact: [Your Email/Contact Method]
 
 ---
 
-**Disclaimer**: An AI-assisted code generation tool – use creatively!
+**Disclaimer**: An AI-assisted code generation tool designed to augment, not replace, human creativity and expertise.
+
+**Star ⭐ the repo if you find it interesting!**
