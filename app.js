@@ -19,6 +19,9 @@ class AppManager {
       this.newFileName = document.getElementById('newFileName');
       this.fileType = document.getElementById('fileType');
       
+      // Preview content
+      this.previewContent = document.getElementById('previewContent');
+      
       // Initialize components
       this.initComponents();
       this.initPreview();
@@ -50,11 +53,14 @@ class AppManager {
       document.getElementById('header-component').addEventListener('newtab', () => {
         this.showFileModal();
       });
+      
+      // Listen for delete tab event
+      document.getElementById('header-component').addEventListener('deletetab', (e) => {
+        this.deleteFile(e.detail.fileName);
+      });
     }
   
     initPreview() {
-      // Get the preview container
-      this.previewContent = document.getElementById('previewContent');
       this.updatePreview();
     }
   
@@ -211,6 +217,47 @@ class AppManager {
       
       // Close modal
       this.closeFileModal();
+    }
+  
+    // Delete a file
+    deleteFile(fileName) {
+      // Don't delete the last file if it's index.html
+      if (fileName === 'index.html' && Object.keys(this.projectFiles).length === 1) {
+        alert("Cannot delete the last remaining file.");
+        return;
+      }
+      
+      // Confirm deletion
+      if (!confirm(`Are you sure you want to delete ${fileName}?`)) {
+        return;
+      }
+      
+      // Get current active file
+      const currentFile = this.editorComponent.getCurrentFile();
+      
+      // Remove file from project files
+      delete this.projectFiles[fileName];
+      
+      // Remove file from sidebar
+      const sidebarFile = document.querySelector(`.file[data-file="${fileName}"]`);
+      if (sidebarFile) {
+        sidebarFile.remove();
+      }
+      
+      // If the deleted file was the active one, switch to another file
+      if (currentFile === fileName) {
+        const nextFile = Object.keys(this.projectFiles)[0];
+        if (nextFile) {
+          this.switchToFile(nextFile);
+        }
+      }
+      
+      // Refresh tabs
+      this.headerComponent.render();
+      this.headerComponent.setActiveTab(this.editorComponent.getCurrentFile());
+      
+      // Update preview
+      this.updatePreview();
     }
   
     // Add file to sidebar

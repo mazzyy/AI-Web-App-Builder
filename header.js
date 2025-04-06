@@ -10,6 +10,11 @@ class HeaderComponent {
     // Render the initial tabs
     this.render();
     
+    // Add event listeners to the new tab button and other elements
+    this.attachEventListeners();
+  }
+  
+  attachEventListeners() {
     // Add event listener for new tab button
     const newTabBtn = this.container.querySelector('.new-tab');
     if (newTabBtn) {
@@ -76,6 +81,9 @@ class HeaderComponent {
     // Clear and update container
     this.container.innerHTML = '';
     this.container.appendChild(tabsContainer);
+    
+    // Re-attach event listeners (important after redrawing tabs)
+    this.attachEventListeners();
   }
 
   // Set active tab
@@ -135,6 +143,12 @@ class HeaderComponent {
 
   // Delete a tab
   deleteTab(fileName) {
+    // Check if it's the last file
+    if (Object.keys(this.projectFiles).length <= 1) {
+      alert("Cannot delete the last remaining file.");
+      return;
+    }
+    
     // Dispatch custom event for tab deletion
     const event = new CustomEvent('deletetab', {
       bubbles: true,
