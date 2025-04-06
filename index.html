@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Web Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <div class="main-container">
+        <!-- Left sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Files/Folders</h3>
+            </div>
+            <div class="sidebar-content">
+                <ul class="folder-list">
+                    <li class="folder active">
+                        <span class="folder-icon">▼</span> config
+                        <ul class="file-list">
+                            <li class="file">_pycache_</li>
+                            <li class="file">_init_.py</li>
+                            <li class="file">settings.py</li>
+                        </ul>
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> data
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> logs
+                    </li>
+                    <li class="folder">
+                        <span class="folder-icon">▶</span> src
+                    </li>
+                    <li class="folder project-files">
+                        <span class="folder-icon">▼</span> project
+                        <ul class="file-list">
+                            <li class="file active-file" data-file="index.html">index.html</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Center code editor -->
+        <div class="editor-container">
+            <!-- Component 1: Header/Tabs -->
+            <div id="header-component"></div>
+            
+            <!-- Component 2: Editor -->
+            <div id="editor-component"></div>
+            
+            <!-- Component 3: Command input -->
+            <div id="command-component"></div>
+        </div>
+
+        <!-- Right preview panel -->
+        <div class="preview-container">
+            <div class="preview-header">
+                <h4>Preview</h4>
+            </div>
+            <div class="preview-content" id="previewContent"></div>
+        </div>
+    </div>
+
+    <!-- New File Modal -->
+    <div class="file-modal" id="newFileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Create New File</h4>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="newFileName">File Name:</label>
+                    <input type="text" id="newFileName" placeholder="e.g., styles.css">
+                </div>
+                <div class="input-group">
+                    <label for="fileType">File Type:</label>
+                    <select id="fileType">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="js">JavaScript</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="create-btn">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="header.js"></script>
+    <script src="editor.js"></script>
+    <script src="command.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
