@@ -65,6 +65,16 @@ class EditorComponent {
       
       // Update line numbers based on content
       this.updateLineNumbers(fileContent);
+      
+      // Add simple syntax colors based on file type
+      this.applySimpleSyntaxColors();
+    }
+  
+    // Apply some basic syntax colors without changing the text content
+    applySimpleSyntaxColors() {
+      // Add a CSS class based on file type
+      const fileType = this.currentFile.split('.').pop();
+      this.codeOutput.className = `code-output ${fileType}-code`;
     }
   
     // Update line numbers based on content

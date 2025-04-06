@@ -459,67 +459,44 @@ body {
     overflow-y: hidden;
 }
 
-/* Code editor styles */
+/* VS Code-like syntax colors */
 .code-output {
-    font-family: 'Courier New', monospace;
+    font-family: 'Consolas', 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.5;
-    color: #acacac;
+    color: #d4d4d4;
     margin: 0;
     padding: 0;
-    white-space: pre-wrap;
-    outline: none; /* Remove outline when focused */
+    white-space: pre;
+    outline: none;
     width: 100%;
     height: 100%;
+    overflow-x: auto;
+    tab-size: 4;
+    background-color: #1e1e1e;
 }
 
-/* Editor content syntax highlighting - simulate with colors */
-.code-output .keyword {
-    color: #569cd6;
+/* Color themes for different file types */
+.html-code {
+    color: #569cd6; /* Base color for HTML */
 }
 
-.code-output .string {
-    color: #ce9178;
+.css-code {
+    color: #9cdcfe; /* Base color for CSS */
 }
 
-.code-output .comment {
-    color: #6a9955;
+.js-code {
+    color: #dcdcaa; /* Base color for JavaScript */
 }
 
-.code-output .function {
-    color: #dcdcaa;
-}
-
-.code-output .variable {
-    color: #9cdcfe;
-}
-
-.code-output .property {
-    color: #9cdcfe;
-}
-
-.code-output .number {
-    color: #b5cea8;
-}
-
-.code-output .operator {
-    color: #d4d4d4;
-}
-
-.code-output .punctuation {
-    color: #d4d4d4;
-}
-
-.code-output .tag {
-    color: #569cd6;
-}
-
-.code-output .attr {
-    color: #9cdcfe;
-}
-
-.code-output .selector-class {
-    color: #d7ba7d;
+/* Apply custom colors with regular expressions on editor */
+.code-output::before {
+    content: attr(data-content);
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0; /* Make invisible, just want the styling */
 }
 
 /* Download button and project controls */
@@ -599,3 +576,46 @@ body {
 .controls-menu-item:hover {
     background-color: var(--bg-dark);
 }
+
+/* VS Code-like syntax colors */
+.code-output {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    tab-size: 4;
+    background-color: #1e1e1e;
+}
+
+/* HTML syntax coloring */
+.html-code span.tag-brackets { color: #808080; }
+.html-code span.tag-name { color: #569cd6; }
+.html-code span.attribute-name { color: #9cdcfe; }
+.html-code span.attribute-value { color: #ce9178; }
+.html-code span.comment { color: #6a9955; }
+.html-code span.doctype { color: #808080; }
+
+/* CSS syntax coloring */
+.css-code span.selector { color: #d7ba7d; }
+.css-code span.property { color: #9cdcfe; }
+.css-code span.value { color: #ce9178; }
+.css-code span.unit { color: #b5cea8; }
+.css-code span.comment { color: #6a9955; }
+.css-code span.punctuation { color: #d4d4d4; }
+.css-code span.important { color: #569cd6; }
+
+/* JavaScript syntax coloring */
+.js-code span.keyword { color: #569cd6; }
+.js-code span.string { color: #ce9178; }
+.js-code span.comment { color: #6a9955; }
+.js-code span.function { color: #dcdcaa; }
+.js-code span.variable { color: #9cdcfe; }
+.js-code span.number { color: #b5cea8; }
+.js-code span.operator { color: #d4d4d4; }
