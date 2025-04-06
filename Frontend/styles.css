@@ -89,7 +89,7 @@ body {
 }
 
 .sidebar-content {
-    padding: 10px 0;
+    padding: 0px 0;
 }
 
 .folder-list, .file-list {
@@ -99,7 +99,7 @@ body {
 }
 
 .folder {
-    padding: 6px 15px;
+    padding: 0px 15px;
     cursor: pointer;
     color: var(--text-light);
     display: flex;
