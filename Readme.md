@@ -59,7 +59,9 @@ pip install -r requirements.txt
 # Run server
 uvicorn main:app --reload --port 5000
 ```
+### Image-1
 ![alt text](image.png)
+### Image-2
 ![alt text](image-1.png)
 ### Frontend
 - Open `index.html` in a browser
