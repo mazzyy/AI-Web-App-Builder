@@ -58,6 +58,23 @@ class AppManager {
       document.getElementById('header-component').addEventListener('deletetab', (e) => {
         this.deleteFile(e.detail.fileName);
       });
+      
+      // Listen for content changes in the editor for real-time preview updates
+      document.getElementById('editor-component').addEventListener('contentchanged', (e) => {
+        // Use requestAnimationFrame to ensure UI updates are smooth
+        requestAnimationFrame(() => {
+          this.updatePreview();
+          console.log(`Content changed in ${e.detail.fileName}, updating preview`);
+        });
+      });
+      
+      // Add keyboard shortcut for save (Ctrl+S)
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          this.saveCurrentFile();
+        }
+      });
     }
   
     initPreview() {
@@ -297,6 +314,30 @@ class AppManager {
       this.updatePreview();
     }
   
+    // Save the current file
+    saveCurrentFile() {
+      const currentFile = this.editorComponent.getCurrentFile();
+      const content = this.projectFiles[currentFile].content;
+      
+      // Here you could implement an actual save to server
+      // For now, just show a confirmation message
+      const message = document.createElement('div');
+      message.className = 'save-message';
+      message.textContent = `${currentFile} saved successfully`;
+      
+      document.body.appendChild(message);
+      
+      // Remove the message after 2 seconds
+      setTimeout(() => {
+        message.classList.add('fade-out');
+        setTimeout(() => {
+          document.body.removeChild(message);
+        }, 500);
+      }, 1500);
+      
+      console.log(`File ${currentFile} saved with content:`, content);
+    }
+  
     // Update the preview with the current HTML file
     updatePreview() {
       // Find the current file
@@ -420,15 +461,39 @@ class AppManager {
   <html lang="en">
   <head>
       <style>
-          color: #acacac;
-          font-size: 32px;
+          body {
+              font-family: Arial, sans-serif;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              margin: 0;
+              background-color: #f5f5f5;
+              color: #333;
+              text-align: center;
+          }
+          h1 {
+              color: #0066ff;
+              margin-bottom: 1rem;
+          }
+          span {
+              display: block;
+              color: #666;
+          }
+          img {
+              margin-top: 2rem;
+              width: 50px;
+              height: 50px;
+          }
       </style>
   </head>
   <body>
       <h1>
-          <span>I'm ready to work,</span><br />
+          <span>I'm ready to work,</span>
           Ask me anything.
       </h1>
+      <p>Type your website description in the command area below and click Generate</p>
       <img src="https://enzostivs-deepsite.hf.space/arrow.svg">
       <script></script>
   </body>
