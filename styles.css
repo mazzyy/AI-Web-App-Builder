@@ -359,6 +359,38 @@ body {
     height: 16px;
 }
 
+/* Command component when fixed to bottom */
+.command-fixed {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* Ensure sidebar and preview container have proper heights */
+.sidebar {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.preview-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-content {
+    flex: 1;
+    overflow: auto;
+}
+
+/* Ensure the line numbers container matches the code editor height */
+.line-numbers {
+    max-height: calc(100vh - 50px - 50px);
+    overflow-y: hidden;
+}
+
 /* Responsive styling */
 @media (max-width: 1200px) {
     .sidebar {
