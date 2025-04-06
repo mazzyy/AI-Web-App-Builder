@@ -170,44 +170,44 @@ class AppManager {
     async generateCode(prompt) {
       const currentFile = this.editorComponent.getCurrentFile();
       
-      // Show loading state
-      this.commandComponent.setLoading(true);
+      console.log("Sending generation request:", {
+          prompt: prompt,
+          currentFile: currentFile
+      });
       
       try {
-        const response = await fetch(this.API_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ 
-            prompt: prompt,
-            currentFile: currentFile
-          })
-        });
-        
-        const data = await response.json();
-        
-        if (data.error) {
-          throw new Error(data.error);
-        }
-        
-        // Update the project files
-        this.projectFiles[currentFile].content = data.code;
-        
-        // Update the editor
-        this.editorComponent.updateFile(currentFile, data.code);
-        
-        // Update the preview
-        this.updatePreview();
-        
+          const response = await fetch('http://localhost:5000/api/generate', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ 
+                  prompt: prompt,
+                  currentFile: currentFile
+              })
+          });
+          
+          console.log("Raw response:", response);
+          
+          if (!response.ok) {
+              const errorText = await response.text();
+              console.error("Error response:", errorText);
+              throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+          }
+          
+          const data = await response.json();
+          console.log("Received data:", data);
+          
+          // Rest of the method remains the same
+          this.projectFiles[currentFile].content = data.code;
+          this.editorComponent.updateFile(currentFile, data.code);
+          this.updatePreview();
+          
       } catch (error) {
-        alert(`Error: ${error.message}`);
-        console.error('Generation error:', error);
-      } finally {
-        // Reset loading state
-        this.commandComponent.setLoading(false);
+          console.error('Full generation error:', error);
+          alert(`Error: ${error.message}`);
       }
-    }
+  }
   
     // Show file creation modal
     showFileModal() {
