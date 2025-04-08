@@ -14,6 +14,9 @@ Generate web code instantly using AI-powered natural language prompts!
 ![AI Code Generation](image-1.png)
 *Demonstrating create new files
 
+# Templates and Design
+![alt text](image-2.png)
+select and modify templates
 
 ## ✨ Current Features
 
@@ -39,8 +42,8 @@ Generate web code instantly using AI-powered natural language prompts!
   - Admin dashboards
   - Portfolio sites
   - E-commerce layouts
-- [ ] Custom template creation and saving
-- [ ] One-click template customization
+- [x] Custom template creation and saving
+- [x] One-click template customization
 
 ### 🌐 Backend Flexibility
 - [ ] Multi-language Backend Support
@@ -53,7 +56,7 @@ Generate web code instantly using AI-powered natural language prompts!
 ### 🛠️ Advanced Development Tools
 - [ ] Integrated terminal
 - [ ] Code snippet library
-- [ ] AI-powered code completion
+- [x] AI-powered code completion
 - [ ] Real-time collaboration features
 - [ ] Export/Import project configurations
 
