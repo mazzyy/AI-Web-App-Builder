@@ -27,16 +27,18 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 class CodeGenerationRequest(BaseModel):
     prompt: str
     currentFile: str
+    currentContent: str = ""  # Add current content field
 
 # Response model for code generation
 class CodeGenerationResponse(BaseModel):
     code: str
 
 # Function to generate code using Gemini
-# Function to generate code using Gemini
-def generate_code_with_gemini(prompt: str, current_file: str):
+def generate_code_with_gemini(prompt: str, current_file: str, current_content: str = ""):
     # Determine file type and context
     file_type = current_file.split('.')[-1]
+    
+    # Base contexts for different file types
     context_map = {
         'html': """You are an expert UI/UX web developer specializing in beautiful, modern HTML layouts.
 
@@ -95,12 +97,12 @@ Focus on enhancing the user experience with:
 Important: Return ONLY the JavaScript code without any explanations, comments about the code, or markdown formatting."""
     }
     
-    # Craft the full prompt with specific UI guidance
+    # Get base context for the file type
     base_context = context_map.get(file_type, 'You are an expert web developer.')
     
-    # Add specific UI enhancement instructions
+    # Add UI/UX guidance
     ui_guidance = """
-    Additional UI/UX guidance:
+    UI/UX guidance:
     - Use a modern, clean aesthetic with appropriate white space
     - Create a visually balanced layout with clear visual hierarchy
     - Implement subtle animations and transitions for a polished feel
@@ -113,7 +115,25 @@ Important: Return ONLY the JavaScript code without any explanations, comments ab
     high-quality websites and applications found in 2024.
     """
     
-    full_prompt = f"{base_context}\n\n{ui_guidance}\n\nUser request: {prompt}"
+    # Add context awareness for existing code
+    context_awareness = ""
+    if current_content:
+        context_awareness = f"""
+        IMPORTANT: I'm providing you with the CURRENT CODE in the file. Instead of creating something from scratch,
+        you should MODIFY and IMPROVE this existing code based on the user's request.
+        
+        CURRENT CODE:
+        ```
+        {current_content}
+        ```
+        
+        Your task is to understand this code, then modify or enhance it according to the user's request below.
+        Preserve the existing structure and functionality while making improvements.
+        Only replace the code completely if that's explicitly requested or if the current code is minimal/placeholder content.
+        """
+    
+    # Craft the full prompt
+    full_prompt = f"{base_context}\n\n{ui_guidance}\n\n{context_awareness}\n\nUser request: {prompt}"
     
     try:
         # Select the appropriate model
@@ -129,41 +149,43 @@ Important: Return ONLY the JavaScript code without any explanations, comments ab
         if generated_code.startswith("```") and generated_code.endswith("```"):
             generated_code = generated_code[3:-3].strip()
         elif "```" in generated_code:
-            # Handle cases where there might be a language identifier
-            lines = generated_code.split("\n")
-            filtered_lines = []
+            # Handle cases where there might be a language identifier or multiple code blocks
             inside_code_block = False
+            cleaned_lines = []
             
-            for line in lines:
+            for line in generated_code.split('\n'):
                 if line.startswith("```"):
                     inside_code_block = not inside_code_block
                     continue
                 if not line.startswith("```") and not inside_code_block:
-                    filtered_lines.append(line)
+                    cleaned_lines.append(line)
             
-            generated_code = "\n".join(filtered_lines).strip()
+            generated_code = '\n'.join(cleaned_lines).strip()
         
         return generated_code
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Gemini API error: {str(e)}")
-    
+
 # Endpoint for code generation
-# In the generate_code function
 @app.post("/api/generate", response_model=CodeGenerationResponse)
 async def generate_code(request: CodeGenerationRequest):
-    print(f"Received request: {request}")
+    print(f"Received request: Prompt: '{request.prompt[:50]}...', File: {request.currentFile}")
     
     try:
         # Use Gemini for code generation
-        generated_code = generate_code_with_gemini(request.prompt, request.currentFile)
+        generated_code = generate_code_with_gemini(
+            request.prompt, 
+            request.currentFile,
+            request.currentContent
+        )
         
-        print(f"Generated code for {request.currentFile}:")
-        print(generated_code)
+        print(f"Generated code for {request.currentFile} (first 100 chars):")
+        print(generated_code[:100] + "...")
         
         return {"code": generated_code}
     except Exception as e:
         print(f"Error in generate_code: {e}")
-        raise
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

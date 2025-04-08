@@ -363,6 +363,87 @@ const templateOptions = {
       }
     }
   }
+
+  // Add this to your templates.js file
+
+function initTemplateModal() {
+   // Get the modal elements
+   const templateModal = document.getElementById("templateModal");
+   const templateBtn = document.getElementById("templateBtn");
+   const closeTemplateModal = document.getElementById("closeTemplateModal");
+   const templateGrid = document.querySelector(".template-grid");
+   
+   // Add click event to button to open modal
+   if (templateBtn) {
+       templateBtn.addEventListener("click", function() {
+           // Load templates into grid
+           loadTemplateGrid();
+           // Show modal
+           templateModal.style.display = "block";
+       });
+   }
+   
+   // Add click event to close button
+   if (closeTemplateModal) {
+       closeTemplateModal.addEventListener("click", function() {
+           templateModal.style.display = "none";
+       });
+   }
+   
+   // Close modal when clicking outside
+   window.addEventListener("click", function(event) {
+       if (event.target === templateModal) {
+           templateModal.style.display = "none";
+       }
+   });
+   
+   // Function to load templates into grid
+   function loadTemplateGrid() {
+       templateGrid.innerHTML = "";
+       
+       // Add template cards to the grid
+       for (const [key, template] of Object.entries(templateOptions)) {
+           const templateCard = document.createElement("div");
+           templateCard.className = "template-card";
+           templateCard.dataset.template = key;
+           
+           templateCard.innerHTML = `
+               <div class="template-card-header">${template.name}</div>
+               <div class="template-card-body">${template.description}</div>
+           `;
+           
+           // Add click event to select this template
+           templateCard.addEventListener("click", function() {
+               selectTemplate(key);
+               templateModal.style.display = "none";
+           });
+           
+           templateGrid.appendChild(templateCard);
+       }
+   }
+   
+   // Function to select a template
+   function selectTemplate(templateKey) {
+       const template = templateOptions[templateKey];
+       if (!template) return;
+       
+       // Get the prompt input
+       const promptInput = document.getElementById("promptInput");
+       if (promptInput) {
+           promptInput.value = template.prompt;
+       }
+       
+       // Optionally, automatically generate with template
+       // if (confirm(`Generate website using ${template.name} template?`)) {
+       //     document.getElementById("generateBtn").click();
+       // }
+   }
+}
+
+// Initialize template modal when DOM is loaded
+document.addEventListener("DOMContentLoaded", function() {
+   initTemplateModal();
+});
   
   // Export for use in other files
   window.templateOptions = templateOptions;

@@ -1,4 +1,42 @@
-/* Save message notification */
+/* VS Code-like syntax colors */
+.code-output {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    tab-size: 4;
+    background-color: #1e1e1e;
+}
+
+/* Color themes for different file types */
+.html-code {
+    color: #569cd6; /* Base color for HTML */
+}
+
+.css-code {
+    color: #9cdcfe; /* Base color for CSS */
+}
+
+.js-code {
+    color: #dcdcaa; /* Base color for JavaScript */
+}
+
+/* Apply custom colors with regular expressions on editor */
+.code-output::before {
+    content: attr(data-content);
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 0; /* Make invisible, just want the styling */
+}/* Save message notification */
 .save-message {
     position: fixed;
     bottom: 20px;
@@ -89,7 +127,7 @@ body {
 }
 
 .sidebar-content {
-    padding: 0px 0;
+    padding: 10px 0;
 }
 
 .folder-list, .file-list {
@@ -99,7 +137,7 @@ body {
 }
 
 .folder {
-    padding: 0px 15px;
+    padding: 6px 15px;
     cursor: pointer;
     color: var(--text-light);
     display: flex;
@@ -459,44 +497,37 @@ body {
     overflow-y: hidden;
 }
 
-/* VS Code-like syntax colors */
-.code-output {
-    font-family: 'Consolas', 'Courier New', monospace;
+/* Template selector styles */
+.template-selector {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--bg-lighter);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.template-selector label {
     font-size: 14px;
-    line-height: 1.5;
-    color: #d4d4d4;
-    margin: 0;
-    padding: 0;
-    white-space: pre;
-    outline: none;
+    color: var(--text-light);
+}
+
+.template-selector select {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
     width: 100%;
-    height: 100%;
-    overflow-x: auto;
-    tab-size: 4;
-    background-color: #1e1e1e;
 }
 
-/* Color themes for different file types */
-.html-code {
-    color: #569cd6; /* Base color for HTML */
-}
-
-.css-code {
-    color: #9cdcfe; /* Base color for CSS */
-}
-
-.js-code {
-    color: #dcdcaa; /* Base color for JavaScript */
-}
-
-/* Apply custom colors with regular expressions on editor */
-.code-output::before {
-    content: attr(data-content);
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    opacity: 0; /* Make invisible, just want the styling */
+.template-selector .template-info {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 4px;
 }
 
 /* Download button and project controls */
@@ -576,46 +607,184 @@ body {
 .controls-menu-item:hover {
     background-color: var(--bg-dark);
 }
-
-/* VS Code-like syntax colors */
-.code-output {
-    font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #d4d4d4;
-    margin: 0;
-    padding: 0;
-    white-space: pre;
-    outline: none;
-    width: 100%;
-    height: 100%;
-    overflow-x: auto;
-    tab-size: 4;
-    background-color: #1e1e1e;
+/* Template selector styles */
+.template-selector {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--bg-lighter);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-/* HTML syntax coloring */
-.html-code span.tag-brackets { color: #808080; }
-.html-code span.tag-name { color: #569cd6; }
-.html-code span.attribute-name { color: #9cdcfe; }
-.html-code span.attribute-value { color: #ce9178; }
-.html-code span.comment { color: #6a9955; }
-.html-code span.doctype { color: #808080; }
+.template-selector label {
+    font-size: 14px;
+    color: var(--text-light);
+}
 
-/* CSS syntax coloring */
-.css-code span.selector { color: #d7ba7d; }
-.css-code span.property { color: #9cdcfe; }
-.css-code span.value { color: #ce9178; }
-.css-code span.unit { color: #b5cea8; }
-.css-code span.comment { color: #6a9955; }
-.css-code span.punctuation { color: #d4d4d4; }
-.css-code span.important { color: #569cd6; }
+.template-selector select {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+}
 
-/* JavaScript syntax coloring */
-.js-code span.keyword { color: #569cd6; }
-.js-code span.string { color: #ce9178; }
-.js-code span.comment { color: #6a9955; }
-.js-code span.function { color: #dcdcaa; }
-.js-code span.variable { color: #9cdcfe; }
-.js-code span.number { color: #b5cea8; }
-.js-code span.operator { color: #d4d4d4; }
+.template-selector .template-info {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 4px;
+}
+/* Template Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+  }
+  
+  .modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .template-modal-content {
+    width: 90%;
+    max-width: 900px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+  }
+  
+  .template-item {
+    background-color: var(--bg-lighter);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+  }
+  
+  .template-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .template-preview {
+    width: 100%;
+    height: 150px;
+    background-color: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .template-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .template-info {
+    padding: 15px;
+  }
+  
+  .template-info h5 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: var(--text-light);
+  }
+  
+  .template-info p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    height: 40px;
+    overflow: hidden;
+  }
+  
+  /* Add template button */
+  .add-template-btn {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  
+  .add-template-btn svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: -3px;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+.template-modal-content {
+    width: 80%;
+    max-width: 900px;
+}
+
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.template-card {
+    background-color: var(--bg-lighter);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.template-card-header {
+    background-color: var(--accent-blue);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.template-card-body {
+    padding: 15px;
+    color: var(--text-light);
+}
