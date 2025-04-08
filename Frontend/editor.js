@@ -80,7 +80,7 @@ class EditorComponent {
     // Update line numbers based on content
     updateLineNumbers(content) {
       const lines = content.split('\n');
-      const lineCount = lines.length;
+      const lineCount = Math.max(lines.length, 30);
       const lineNumbers = this.container.querySelector('.line-numbers');
       
       // Clear existing line numbers
