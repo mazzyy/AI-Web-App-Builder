@@ -57,27 +57,19 @@
             </div>
             <div class="sidebar-content">
                 <ul class="folder-list">
-                    <li class="folder active">
-                        <span class="folder-icon">▼</span> config
-                        <ul class="file-list">
-                            <li class="file">_pycache_</li>
-                            <li class="file">_init_.py</li>
-                            <li class="file">settings.py</li>
-                        </ul>
-                    </li>
-                    <li class="folder">
-                        <span class="folder-icon">▶</span> data
-                    </li>
-                    <li class="folder">
-                        <span class="folder-icon">▶</span> logs
-                    </li>
-                    <li class="folder">
-                        <span class="folder-icon">▶</span> src
-                    </li>
                     <li class="folder project-files">
-                        <span class="folder-icon">▼</span> project
+                        <span class="folder-icon">▼</span> Frontend
                         <ul class="file-list">
                             <li class="file active-file" data-file="index.html">index.html</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="folder-list">
+                    <li class="folder project-files">
+                        <span class="folder-icon">▼</span> Backend 
+                        <ul class="file-list">
+                            
+                            <li class="file active-file" data-file="index.html">main.py</li>
                         </ul>
                     </li>
                 </ul>
@@ -105,49 +97,29 @@
         </div>
     </div>
 
-    <!-- New File Modal -->
-    <div class="file-modal" id="newFileModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Create New File</h4>
-                <span class="close-modal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <label for="newFileName">File Name:</label>
-                    <input type="text" id="newFileName" placeholder="e.g., styles.css">
-                </div>
-                <div class="input-group">
-                    <label for="fileType">File Type:</label>
-                    <select id="fileType">
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="js">JavaScript</option>
-                    </select>
-                </div>
-                <div class="modal-buttons">
-                    <button class="cancel-btn">Cancel</button>
-                    <button class="create-btn">Create</button>
-                </div>
-            </div>
-        </div>
-    </div>
+            
     
-    <!-- Template Selection Modal -->
     <div class="modal" id="templateModal">
-      <div class="modal-content template-modal-content">
-        <div class="modal-header">
-          <h4>Choose a Website Template</h4>
-          <span class="close-modal" id="closeTemplateModal">&times;</span>
-        </div>
-        <div class="modal-body">
-          <div class="template-grid">
-            <!-- Template items will be added here dynamically -->
-             
+        <div class="modal-content template-modal-content">
+          <div class="modal-header">
+            <h4>Choose a Website Template</h4>
+            <span class="close-modal" id="closeTemplateModal">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div class="template-grid">
+              <!-- Template items will be added here dynamically -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+<!-- The template prompt popup will be created dynamically by JavaScript -->
+<!-- No need to add it directly to HTML -->
+
+<!-- Add the template-prompt.js script before app.js -->
+<script src="templates.js"></script>
+<script src="template-prompt.js"></script>
+<script src="app.js"></script>
 
     <!-- Scripts -->
     <script src="header.js"></script>
@@ -156,73 +128,7 @@
     <script src="templates.js"></script>
     <script src="app.js"></script>
 </body>
-</html><li class="folder">
-                        <span class="folder-icon">▶</span> data
-                    </li>
-                    <li class="folder">
-                        <span class="folder-icon">▶</span> logs
-                    </li>
-                    <li class="folder">
-                        <span class="folder-icon">▶</span> src
-                    </li>
-                    <li class="folder project-files">
-                        <span class="folder-icon">▼</span> project
-                        <ul class="file-list">
-                            <li class="file active-file" data-file="index.html">index.html</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Center code editor -->
-        <div class="editor-container">
-            <!-- Component 1: Header/Tabs -->
-            <div id="header-component"></div>
-            
-            <!-- Component 2: Editor -->
-            <div id="editor-component"></div>
-            
-            <!-- Component 3: Command input (always at bottom) -->
-            <div id="command-component" class="command-fixed"></div>
-        </div>
-
-        <!-- Right preview panel -->
-        <div class="preview-container">
-            <div class="preview-header">
-                <h4>Preview</h4>
-            </div>
-            <div class="preview-content" id="previewContent"></div>
-        </div>
-    </div>
-
-    <!-- New File Modal -->
-    <div class="file-modal" id="newFileModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Create New File</h4>
-                <span class="close-modal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <label for="newFileName">File Name:</label>
-                    <input type="text" id="newFileName" placeholder="e.g., styles.css">
-                </div>
-                <div class="input-group">
-                    <label for="fileType">File Type:</label>
-                    <select id="fileType">
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="js">JavaScript</option>
-                    </select>
-                </div>
-                <div class="modal-buttons">
-                    <button class="cancel-btn">Cancel</button>
-                    <button class="create-btn">Create</button>
-                </div>
-            </div>
-        </div>
-    </div>
+</html>
 
     <!-- Scripts -->
     <script src="header.js"></script>

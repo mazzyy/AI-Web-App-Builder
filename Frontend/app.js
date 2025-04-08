@@ -484,6 +484,97 @@ class AppManager {
     }
   }
   
+  // Add these methods to your AppManager class in app.js
+// Only include these, not the entire file, to integrate with the popup
+
+// Add this to your initTemplateSystem method in AppManager class
+// or create the method if it doesn't exist
+// Add these methods to your AppManager class in app.js
+// Only include these, not the entire file, to integrate with the popup
+
+// Add this to your initTemplateSystem method in AppManager class
+// or create the method if it doesn't exist
+initTemplateSystem() {
+  // Initialize template buttons
+  const templateBtn = document.getElementById('templateBtn');
+  if (templateBtn) {
+    templateBtn.addEventListener('click', () => {
+      const templateModal = document.getElementById('templateModal');
+      if (templateModal) {
+        templateModal.classList.add('show');
+      }
+    });
+  }
+  
+  // Listen for template selection
+  document.addEventListener('click', (e) => {
+    const templateCard = e.target.closest('.template-card');
+    if (templateCard) {
+      const templateKey = templateCard.dataset.template;
+      if (templateKey && window.templateOptions && window.templateOptions[templateKey]) {
+        // Show template prompt popup
+        if (window.showTemplatePromptPopup) {
+          window.showTemplatePromptPopup(window.templateOptions[templateKey]);
+        }
+        
+        // Close the template selection modal
+        const templateModal = document.getElementById('templateModal');
+        if (templateModal) {
+          templateModal.classList.remove('show');
+        }
+      }
+    }
+  });
+}
+
+// Generate code from prompt - Make sure it's accessible to the popup
+generateCode(prompt) {
+  const currentFile = this.editorComponent.getCurrentFile();
+  const currentContent = this.projectFiles[currentFile].content;
+  
+  // Show loading state
+  this.commandComponent.setLoading(true);
+  
+  // Close the prompt popup if it's open
+  if (window.closeTemplatePromptPopup) {
+    window.closeTemplatePromptPopup();
+  }
+  
+  fetch(this.API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 
+      prompt: prompt,
+      currentFile: currentFile,
+      currentContent: currentContent
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      throw new Error(data.error);
+    }
+    
+    // Update the project files
+    this.projectFiles[currentFile].content = data.code;
+    
+    // Update the editor
+    this.editorComponent.updateFile(currentFile, data.code);
+    
+    // Update the preview
+    this.updatePreview();
+  })
+  .catch(error => {
+    alert(`Error: ${error.message}`);
+    console.error('Generation error:', error);
+  })
+  .finally(() => {
+    // Reset loading state
+    this.commandComponent.setLoading(false);
+  });
+}
   // Export as single HTML file
   exportAsSingleHtml() {
     try {
@@ -638,3 +729,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   window.appManager = new AppManager();
 });
+
+
+

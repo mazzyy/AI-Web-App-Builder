@@ -293,7 +293,366 @@ const templateOptions = {
   - Mobile responsive with appropriate interactions for touch devices.
   - Fast loading with optimized images and progressive loading.
   - Clear information hierarchy that guides users through the conversion funnel.`
+    },
+    event: {
+      name: "Event/Conference",
+      description: "A comprehensive template for events, conferences, and meetups",
+      prompt: `1. **Hero Section**:
+       - Large banner with event name, date, and location.
+       - Prominent "Register Now" or "Buy Tickets" button.
+       - High-impact background image or video that sets the event's theme.
+       - Countdown timer to build urgency.
+  
+     2. **Event Highlights/Overview**:
+       - Short description of the event's mission and purpose.
+       - Key selling points (e.g., networking opportunities, keynote speakers, workshops).
+       - Optional video or slideshow showcasing past events.
+  
+     3. **Speakers Section**:
+       - Grid or card layout for speakers with photos, names, and titles.
+       - Hover or modal effect to reveal bios or social links.
+       - Optional "View Full Schedule" link.
+  
+     4. **Schedule/Agenda**:
+       - Day-by-day or session-by-session breakdown.
+       - Collapsible accordions for full session details (topic, speaker, time).
+       - Emphasis on keynotes or main attractions.
+  
+     5. **Venue/Location Info**:
+       - Map integration (static image or embedded map).
+       - Venue address and directions.
+       - Nearby accommodations or transport options.
+  
+     6. **Sponsors/Partners**:
+       - Showcase logos of sponsors/partners in a grid layout.
+       - Brief mention of sponsorship opportunities or partner benefits.
+  
+     7. **Testimonials**:
+       - Short quotes or video testimonials from past attendees/speakers.
+       - Highlight success stories or unique experiences.
+  
+     8. **FAQ Section**:
+       - Address common questions about tickets, refunds, dress code, etc.
+       - Collapsible accordions for easy browsing.
+  
+     9. **Footer**:
+       - Email signup for event updates.
+       - Social media links to follow event news.
+       - Contact information for event organizers.
+       - Legal or terms link for ticket policies.
+  
+     **Styling & Tech Requirements**:
+     - Professional but vibrant design matching the event theme.
+     - Mobile responsiveness to handle on-the-go ticket purchases.
+     - Quick page load, especially for schedule and ticket links.
+     - User-friendly navigation for exploring agenda, speakers, and venue.
+     - Consistent branding across sections (colors, fonts, icons).`
+    },
+    restaurant: {
+      name: "Restaurant",
+      description: "A stylish, modern template for restaurants, cafés, or bakeries",
+      prompt: `1. **Hero Section**:
+       - Full-width background image featuring signature dish or interior shot.
+       - Restaurant name/logo and a brief tagline.
+       - Prominent "View Menu" or "Book a Table" button.
+       - Option for a background video to showcase atmosphere.
+  
+     2. **About/Story Section**:
+       - Brief history or unique story behind the restaurant.
+       - Chef introduction with photo, if relevant.
+       - Highlight special cuisines or accolades.
+  
+     3. **Menu Preview**:
+       - Categorized sections (Starters, Main Courses, Desserts, Drinks).
+       - High-quality dish images with short descriptions.
+       - Emphasis on best-sellers or signature dishes.
+       - Link to view full PDF menu or online ordering system.
+  
+     4. **Specials/Offers**:
+       - Featured seasonal or limited-time dishes.
+       - Discounts, happy hour, or combo deals.
+       - Eye-catching banners or badges.
+  
+     5. **Gallery/Interior**:
+       - Image gallery or slideshow of the restaurant ambiance.
+       - Showcase of key dishes, interior décor, and staff.
+       - Optional video tour for a more immersive feel.
+  
+     6. **Testimonials/Reviews**:
+       - Star ratings from popular platforms (Yelp, Google).
+       - Quotes from satisfied customers.
+       - Option to display social media feeds for real-time reviews.
+  
+     7. **Reservation/Contact Section**:
+       - Simple reservation form (Date, Time, Party Size, Contact info).
+       - Address, phone number, and email for direct queries.
+       - Embedded map or directions.
+  
+     8. **Footer**:
+       - Business hours.
+       - Social media links (Instagram, Facebook, etc.).
+       - Newsletter signup for special offers.
+       - Legal links (Privacy, Terms, etc.).
+  
+     **Styling & Tech Requirements**:
+     - Warm, inviting color palette that complements food photography.
+     - Mobile-first approach for easy on-the-go booking and menu browsing.
+     - Quick loading optimized images.
+     - Accessible navigation and large CTA buttons (especially for reservations).
+     - Clear typography to highlight dish names and prices.`
+    },
+  
+    // 3. Non-Profit/Charity Website Template
+    nonProfit: {
+      name: "Non-Profit/Charity",
+      description: "A clean, informative template for charitable organizations and NGOs",
+      prompt: `1. **Hero Section**:
+       - Inspiring full-width image showcasing cause or beneficiaries.
+       - Strong headline and subheadline emphasizing mission.
+       - Prominent "Donate Now" or "Get Involved" button.
+  
+     2. **Mission Statement**:
+       - Brief description of the organization’s goals and impact.
+       - Key statistics or facts highlighting the need.
+       - Optional short video or infographic for storytelling.
+  
+     3. **Programs/Initiatives**:
+       - Grid or card layout describing various programs or campaigns.
+       - Highlight successes, numbers served, or achievements.
+       - Links to learn more or donate to specific programs.
+  
+     4. **How Donations Help**:
+       - Breakdown of how funds are allocated.
+       - Impact stories or case studies from real beneficiaries.
+       - Visual representation of donation usage (pie charts or infographics).
+  
+     5. **Events/Volunteer Opportunities**:
+       - Calendar or list of upcoming fundraisers or community events.
+       - Volunteer sign-up form or call to action.
+       - Photos of volunteers in action.
+  
+     6. **Testimonials/Success Stories**:
+       - Quotes or short videos from people who have benefited.
+       - Donor/partner testimonials about working with the organization.
+       - Emphasis on real-world impact and positive change.
+  
+     7. **Partners/Sponsors**:
+       - Display logos or mention of major supporters.
+       - Brief note on partnership opportunities.
+  
+     8. **Footer**:
+       - Email sign-up for newsletters or updates.
+       - Social media channels.
+       - Legal links, financial transparency, annual reports.
+       - Contact info, address, phone, and donation hotline.
+  
+     **Styling & Tech Requirements**:
+     - Compassionate and uplifting design with mission-focused imagery.
+     - Clear, user-friendly donation flow (fewest clicks possible).
+     - Mobile responsiveness to encourage donations on any device.
+     - Highlight calls-to-action (Donate, Volunteer) in vibrant colors.
+     - Trust-building elements: seals, certifications, or financial reports.`
+    },
+  
+    // 4. Real Estate Listing Website Template
+    realEstate: {
+      name: "Real Estate Listings",
+      description: "A property-focused template for realtors or property agencies",
+      prompt: `1. **Header/Nav Section**:
+       - Prominent logo, navigation (Buy, Rent, Sell, Contact).
+       - Search bar (location, property type, price range).
+       - Login/Register for user account if needed.
+  
+     2. **Hero/Search Section**:
+       - Full-width background image/video of a prime property or local cityscape.
+       - Search filters (location, property type, min/max price).
+       - Clear CTA ("Find Your Dream Home", "Search Now").
+  
+     3. **Featured Listings**:
+       - Grid or carousel with high-quality property images.
+       - Key details (price, location, number of bedrooms, area).
+       - Links to detailed property pages.
+  
+     4. **Property Highlights**:
+       - Standout properties or recent listings.
+       - Ribbon labels (New, Hot, Reduced Price).
+       - Hover effect for quick stats or short descriptions.
+  
+     5. **Agents/Team Section**:
+       - Profile cards for agents with photos, names, and contact links.
+       - Brief bio or specialty (Residential, Commercial, Luxury).
+       - CTA to schedule a call or meeting.
+  
+     6. **Neighborhood/Area Guides**:
+       - Overview of popular neighborhoods.
+       - Key info: schools, amenities, local attractions.
+       - Interactive map or static location highlight.
+  
+     7. **Testimonials/Reviews**:
+       - Client stories and feedback about buying/selling process.
+       - Trust indicators (years of experience, successful deals).
+       - Real photos of clients for authenticity.
+  
+     8. **Footer**:
+       - Contact info, office address, phone, email.
+       - Quick links (About Us, Blog, Careers).
+       - Social media icons.
+       - Legal (Privacy Policy, Terms of Use).
+  
+     **Property Detail Page**:
+     - Large photo gallery or slideshow.
+     - Detailed description, floor plans, amenities, property features.
+     - Map showing exact location.
+     - Contact form or agent details for inquiries.
+     - Mortgage calculator or cost breakdown if applicable.
+  
+     **Styling & Tech Requirements**:
+     - Professional, clean interface with real estate brand colors.
+     - Mobile-friendly property grids and search filters.
+     - Fast image loading and effective image optimization.
+     - Clear CTA for scheduling viewings or contacting agents.
+     - Filter functionality must be intuitive and quick.`
+    },
+  
+    // 5. Corporate/Agency Website Template
+    agency: {
+      name: "Corporate/Agency",
+      description: "A sleek, professional template for businesses, agencies, or consulting firms",
+      prompt: `1. **Hero Section**:
+       - Clean, minimalistic design with corporate branding.
+       - Headline focusing on the key business offering or slogan.
+       - Subheadline with a short overview of services.
+       - CTA buttons ("Get a Quote", "Our Services").
+  
+     2. **Services/What We Do**:
+       - Cards or columns outlining primary service offerings.
+       - Icons or simple graphics representing each service.
+       - Short, benefit-driven descriptions.
+  
+     3. **About/Why Us**:
+       - Company background, founding story, or mission statement.
+       - Highlight team expertise, values, or unique selling points.
+       - Optional team member section with headshots.
+  
+     4. **Case Studies/Portfolio**:
+       - Showcase of completed projects or client success stories.
+       - Before-and-after results, metrics, or testimonials.
+       - Links to detailed case studies for in-depth reading.
+  
+     5. **Testimonials**:
+       - Client quotes with names, positions, and company logos.
+       - Emphasis on quantitative results (e.g., "Increased ROI by 40%").
+       - Optional video testimonials for added credibility.
+  
+     6. **Call-To-Action Block**:
+       - A bold statement inviting users to take the next step.
+       - "Request a Proposal," "Book a Consultation," or "Contact Us."
+  
+     7. **Blog/Insights**:
+       - Preview of latest articles, market insights, or thought leadership pieces.
+       - Encourage user to explore content for credibility.
+       - Optional sign-up for updates or newsletter.
+  
+     8. **Footer**:
+       - Company info, address, contact, business hours.
+       - Social media links.
+       - Legal links (Privacy, Terms, Compliance).
+       - Optional awards or certifications badges.
+  
+     **Styling & Tech Requirements**:
+     - Consistent use of brand colors, typography, and iconography.
+     - Professional, uncluttered layout highlighting key value propositions.
+     - Fully responsive with a polished, corporate feel.
+     - Emphasis on trust signals (client logos, certifications).
+     - Fast load speed, optimized for lead generation.`
+    },
+    comingSoon: {
+      name: "Coming Soon/Under Construction",
+      description: "A minimalist pre-launch template to build anticipation and capture leads",
+      prompt: `1. **Hero Section**:
+       - Simple background (gradient, abstract design, or relevant brand image).
+       - Website or brand name and brief tagline.
+       - Engaging headline like "Something Awesome is Coming Soon" or "We're Launching Shortly."
+  
+     2. **Countdown Timer**:
+       - Prominent countdown clock showing days, hours, minutes, seconds until launch.
+       - Encourages excitement and urgency.
+  
+     3. **Newsletter/Sign-Up Form**:
+       - Single field for email or optional name and email.
+       - CTA button ("Notify Me", "Stay Updated").
+       - Brief privacy note or reassurance.
+  
+     4. **Social Media Links**:
+       - Icons for Twitter, Instagram, LinkedIn, etc.
+       - Encourages visitors to follow the brand for updates.
+  
+     5. **Teaser Content (Optional)**:
+       - 1-2 sentences about what’s coming (product, service, event).
+       - Subtle hints, features, or sneak peek images.
+    
+     6. **Footer**:
+       - Minimalist with essential info: company name, contact email.
+       - Legal links (if necessary), small copyright.
+  
+     **Styling & Tech Requirements**:
+     - Minimal, clean design focusing on the countdown and sign-up form.
+     - Responsive layout for quick, frictionless email collection on mobile.
+     - Light loading (few images/elements).
+     - On-expiration event: optional automatic redirect or a subtle "We're Live!" message.
+     - Emphasis on brand colors for consistent feel.`
+    },
+  
+    // 2. Photography/Creative Portfolio
+    photography: {
+      name: "Photography/Creative Portfolio",
+      description: "A visual-centric site to showcase photo galleries, artwork, or creative projects",
+      prompt: `1. **Hero Section**:
+       - Full-screen slideshow or hero image showcasing best work.
+       - Photographer/artist name and short tagline (e.g., "Capturing Moments | Lifestyle & Portrait").
+       - Subtle call-to-action ("Explore My Work").
+  
+     2. **Portfolio/Gallery**:
+       - Masonry or grid layout for images, ensuring a visually appealing arrangement.
+       - Hover effects for image details or quick previews.
+       - Category filters (e.g., Landscapes, Portraits, Street Photography) if applicable.
+  
+     3. **Featured Project/Showcase**:
+       - Highlight a specific shoot or series (story-driven layout).
+       - Larger images, behind-the-scenes details, or a short write-up.
+  
+     4. **About/Bio Section**:
+       - A professional portrait or a personal photo.
+       - Brief background, inspiration, style, or awards.
+       - Social proof or notable mentions (e.g., published in magazines).
+  
+     5. **Services & Pricing** (Optional):
+       - If offering sessions: list packages (weddings, portraits, events).
+       - Feature-based breakdown of what’s included.
+       - CTA: "Book a Session" or "Contact for Quotes."
+  
+     6. **Testimonials**:
+       - Client feedback or quotes.
+       - Photos from actual shoots for authenticity.
+  
+     7. **Contact/Booking Form**:
+       - Name, email, project details, date/time requests (if relevant).
+       - Additional contact methods: phone number, social media.
+  
+     8. **Footer**:
+       - Social links (Instagram, Behance, YouTube).
+       - Copyright, any professional affiliations.
+       - Subtle brand or watermark.
+  
+     **Styling & Tech Requirements**:
+     - Visually driven design that keeps the focus on images/artwork.
+     - High-resolution image support with careful optimization for fast loading.
+     - Responsive gallery layouts (masonry/grid) that adapt to various screen sizes.
+     - Minimal text; let photography/art take center stage.
+     - Easy navigation to browse different categories or collections.`
     }
+  
+
   };
   
   // Function to add template selection to UI
@@ -366,7 +725,142 @@ const templateOptions = {
 
   // Add this to your templates.js file
 
-function initTemplateModal() {
+// Add this to templates.js or create a new file called template-prompt.js
+
+// Create the template prompt popup HTML structure
+function createTemplatePromptPopup() {
+   // Check if the popup already exists
+   if (document.getElementById('template-prompt-popup')) {
+     return;
+   }
+   
+   // Create the popup container
+   const promptPopup = document.createElement('div');
+   promptPopup.id = 'template-prompt-popup';
+   promptPopup.className = 'template-prompt-popup';
+   
+   // Create the popup content
+   promptPopup.innerHTML = `
+     <div class="prompt-popup-content">
+       <div class="prompt-popup-header">
+         <h3 id="prompt-popup-title">Template Prompt</h3>
+         <span class="close-prompt-popup">&times;</span>
+       </div>
+       <div class="prompt-popup-body">
+         <p id="prompt-popup-description">Edit the template prompt below:</p>
+         <textarea id="prompt-popup-textarea" class="prompt-popup-textarea"></textarea>
+       </div>
+       <div class="prompt-popup-footer">
+        
+         <button id="generate-prompt-btn" class="generate-btn">Generate</button>
+       </div>
+     </div>
+   `;
+   
+   // Add the popup to the document body
+   document.body.appendChild(promptPopup);
+   
+   // Add event listeners
+   const closeBtn = promptPopup.querySelector('.close-prompt-popup');
+   const updateBtn = document.getElementById('update-prompt-btn');
+   const generateBtn = document.getElementById('generate-prompt-btn');
+   
+   // Close popup when X is clicked
+   if (closeBtn) {
+     closeBtn.addEventListener('click', () => {
+       closeTemplatePromptPopup();
+     });
+   }
+   
+   // Close popup when clicking outside
+   promptPopup.addEventListener('click', (e) => {
+     if (e.target === promptPopup) {
+       closeTemplatePromptPopup();
+     }
+   });
+   
+   // Update prompt button
+   if (updateBtn) {
+     updateBtn.addEventListener('click', () => {
+       const promptTextarea = document.getElementById('prompt-popup-textarea');
+       const promptInput = document.getElementById('promptInput');
+       
+       if (promptTextarea && promptInput) {
+         promptInput.value = promptTextarea.value;
+         
+         // Show notification
+         const appManager = window.appManager;
+         if (appManager && appManager.showNotification) {
+           appManager.showNotification('Prompt updated!');
+         }
+       }
+       
+       closeTemplatePromptPopup();
+     });
+   }
+   
+   // Generate button
+   if (generateBtn) {
+     generateBtn.addEventListener('click', () => {
+       const promptTextarea = document.getElementById('prompt-popup-textarea');
+       const promptInput = document.getElementById('promptInput');
+       
+       if (promptTextarea && promptInput) {
+         promptInput.value = promptTextarea.value;
+         
+         // Trigger generate
+         const appManager = window.appManager;
+         if (appManager && appManager.generateCode) {
+           appManager.generateCode(promptTextarea.value);
+         }
+       }
+       
+       closeTemplatePromptPopup();
+     });
+   }
+ }
+ 
+ // Show the template prompt popup with content
+ function showTemplatePromptPopup(template) {
+   if (!template) return;
+   
+   // Create the popup if it doesn't exist
+   createTemplatePromptPopup();
+   
+   // Get elements
+   const popup = document.getElementById('template-prompt-popup');
+   const title = document.getElementById('prompt-popup-title');
+   const description = document.getElementById('prompt-popup-description');
+   const textarea = document.getElementById('prompt-popup-textarea');
+   
+   // Update content
+   if (title) title.textContent = `${template.name} Template`;
+   if (description) description.textContent = template.description;
+   if (textarea) textarea.value = template.prompt;
+   
+   // Show the popup
+   if (popup) popup.classList.add('show');
+   
+   // Focus on the textarea
+   if (textarea) {
+     setTimeout(() => {
+       textarea.focus();
+     }, 100);
+   }
+ }
+ 
+ // Close the template prompt popup
+ function closeTemplatePromptPopup() {
+   const popup = document.getElementById('template-prompt-popup');
+   if (popup) {
+     popup.classList.remove('show');
+   }
+ }
+ 
+ // Modify the template selection function to show the prompt popup
+ // In templates.js, update the selectTemplate function:
+ 
+ function initTemplateModal() {
    // Get the modal elements
    const templateModal = document.getElementById("templateModal");
    const templateBtn = document.getElementById("templateBtn");
@@ -375,70 +869,68 @@ function initTemplateModal() {
    
    // Add click event to button to open modal
    if (templateBtn) {
-       templateBtn.addEventListener("click", function() {
-           // Load templates into grid
-           loadTemplateGrid();
-           // Show modal
-           templateModal.style.display = "block";
-       });
+     templateBtn.addEventListener("click", function() {
+       // Load templates into grid
+       loadTemplateGrid();
+       // Show modal
+       templateModal.classList.add("show");
+     });
    }
    
    // Add click event to close button
    if (closeTemplateModal) {
-       closeTemplateModal.addEventListener("click", function() {
-           templateModal.style.display = "none";
-       });
+     closeTemplateModal.addEventListener("click", function() {
+       templateModal.classList.remove("show");
+     });
    }
    
    // Close modal when clicking outside
    window.addEventListener("click", function(event) {
-       if (event.target === templateModal) {
-           templateModal.style.display = "none";
-       }
+     if (event.target === templateModal) {
+       templateModal.classList.remove("show");
+     }
    });
    
    // Function to load templates into grid
    function loadTemplateGrid() {
-       templateGrid.innerHTML = "";
+     templateGrid.innerHTML = "";
+     
+     // Add template cards to the grid
+     for (const [key, template] of Object.entries(templateOptions)) {
+       const templateCard = document.createElement("div");
+       templateCard.className = "template-card";
+       templateCard.dataset.template = key;
        
-       // Add template cards to the grid
-       for (const [key, template] of Object.entries(templateOptions)) {
-           const templateCard = document.createElement("div");
-           templateCard.className = "template-card";
-           templateCard.dataset.template = key;
-           
-           templateCard.innerHTML = `
-               <div class="template-card-header">${template.name}</div>
-               <div class="template-card-body">${template.description}</div>
-           `;
-           
-           // Add click event to select this template
-           templateCard.addEventListener("click", function() {
-               selectTemplate(key);
-               templateModal.style.display = "none";
-           });
-           
-           templateGrid.appendChild(templateCard);
-       }
+       templateCard.innerHTML = `
+           <div class="template-card-header">${template.name}</div>
+           <div class="template-card-body">${template.description}</div>
+       `;
+       
+       // Add click event to select this template
+       templateCard.addEventListener("click", function() {
+         selectTemplate(key);
+         templateModal.classList.remove("show");
+       });
+       
+       templateGrid.appendChild(templateCard);
+     }
    }
    
    // Function to select a template
    function selectTemplate(templateKey) {
-       const template = templateOptions[templateKey];
-       if (!template) return;
-       
-       // Get the prompt input
-       const promptInput = document.getElementById("promptInput");
-       if (promptInput) {
-           promptInput.value = template.prompt;
-       }
-       
-       // Optionally, automatically generate with template
-       // if (confirm(`Generate website using ${template.name} template?`)) {
-       //     document.getElementById("generateBtn").click();
-       // }
+     const template = templateOptions[templateKey];
+     if (!template) return;
+     
+     // Show the template prompt popup instead of setting directly
+     showTemplatePromptPopup(template);
    }
-}
+ }
+ 
+ // Initialize everything when DOM is loaded
+ document.addEventListener("DOMContentLoaded", function() {
+   initTemplateModal();
+   createTemplatePromptPopup();
+ });
 
 // Initialize template modal when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
