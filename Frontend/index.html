@@ -96,7 +96,33 @@
             <div class="preview-content" id="previewContent"></div>
         </div>
     </div>
-
+<!-- New File Modal -->
+<div class="file-modal" id="newFileModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Create New File</h4>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <label for="newFileName">File Name:</label>
+                <input type="text" id="newFileName" placeholder="e.g., styles.css">
+            </div>
+            <div class="input-group">
+                <label for="fileType">File Type:</label>
+                <select id="fileType">
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="js">JavaScript</option>
+                </select>
+            </div>
+            <div class="modal-buttons">
+                <button class="cancel-btn">Cancel</button>
+                <button class="create-btn">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
             
     
     <div class="modal" id="templateModal">
