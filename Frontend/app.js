@@ -10,6 +10,8 @@ class AppManager {
     
     // API endpoint
     this.API_URL = 'http://localhost:5000/api/generate';
+
+    
     
     // DOM elements for modals
     this.fileModal = document.getElementById('newFileModal');
@@ -28,6 +30,8 @@ class AppManager {
     this.initFolders();
     this.initModalEvents();
     this.initDownloadButtons();
+    
+    
   }
 
   initComponents() {
@@ -77,6 +81,7 @@ class AppManager {
       }
     });
   }
+  
 
   initPreview() {
     this.updatePreview();
@@ -118,27 +123,61 @@ class AppManager {
     });
   }
 
-  initModalEvents() {
-    // Close modal events
-    if (this.closeModalBtn) {
-      this.closeModalBtn.addEventListener('click', () => {
-        this.closeFileModal();
-      });
-    }
-    
-    if (this.cancelBtn) {
-      this.cancelBtn.addEventListener('click', () => {
-        this.closeFileModal();
-      });
-    }
-    
-    // Create file event
-    if (this.createFileBtn) {
-      this.createFileBtn.addEventListener('click', () => {
-        this.createNewFile();
-      });
-    }
+// Enhanced modal initialization for AppManager
+initModalEvents() {
+  // Ensure all DOM elements are selected correctly
+  this.fileModal = document.getElementById('newFileModal');
+  this.closeModalBtn = document.querySelector('#newFileModal .close-modal');
+  this.cancelBtn = document.querySelector('#newFileModal .cancel-btn');
+  this.createFileBtn = document.querySelector('#newFileModal .create-btn');
+  this.newFileName = document.getElementById('newFileName');
+  this.fileType = document.getElementById('fileType');
+
+  // Debug logging
+  console.log('Modal Elements:', {
+    fileModal: this.fileModal,
+    closeModalBtn: this.closeModalBtn,
+    cancelBtn: this.cancelBtn,
+    createFileBtn: this.createFileBtn,
+    newFileName: this.newFileName,
+    fileType: this.fileType
+  });
+
+  // Close modal events
+  if (this.closeModalBtn) {
+    this.closeModalBtn.addEventListener('click', () => {
+      this.closeFileModal();
+    });
+  } else {
+    console.error('Close modal button not found');
   }
+  
+  if (this.cancelBtn) {
+    this.cancelBtn.addEventListener('click', () => {
+      this.closeFileModal();
+    });
+  } else {
+    console.error('Cancel button not found');
+  }
+  
+  // Create file event
+  if (this.createFileBtn) {
+    this.createFileBtn.addEventListener('click', () => {
+      this.createNewFile();
+    });
+  } else {
+    console.error('Create file button not found');
+  }
+
+  // Optional: Add keyboard support
+  if (this.newFileName) {
+    this.newFileName.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        this.createNewFile();
+      }
+    });
+  }
+}
 
   // Initialize download buttons
   initDownloadButtons() {
@@ -212,9 +251,30 @@ class AppManager {
 
   // Show file creation modal
   showFileModal() {
+    // Re-select modal elements to ensure they exist
+    this.fileModal = document.getElementById('newFileModal');
+    this.newFileName = document.getElementById('newFileName');
+    this.fileType = document.getElementById('fileType');
+  
+    if (!this.fileModal) {
+      console.error('File modal not found');
+      return;
+    }
+  
     this.fileModal.classList.add('show');
-    this.newFileName.focus();
+    
+    if (this.newFileName) {
+      this.newFileName.value = ''; // Clear previous input
+      this.newFileName.focus();
+    }
+  
+    // Reset file type to default
+    if (this.fileType) {
+      this.fileType.selectedIndex = 0;
+    }
   }
+  
+  
 
   // Close file creation modal
   closeFileModal() {
@@ -724,6 +784,128 @@ document.addEventListener('DOMContentLoaded', function() {
 </html>`;
   }
 }
+
+
+
+// Debug utility for AppManager
+class AppManagerDebug {
+  constructor(appManager) {
+    this.appManager = appManager;
+  }
+
+  // Comprehensive debug logging for file operations
+  logFileOperations() {
+    console.group('📁 File Operations Debug');
+    console.log('Total Files:', Object.keys(this.appManager.projectFiles).length);
+    console.log('Current Files:', Object.keys(this.appManager.projectFiles));
+    console.log('Current Active File:', this.appManager.editorComponent.getCurrentFile());
+    console.groupEnd();
+  }
+
+  // Debug modal and file creation process
+  debugNewFileModal() {
+    console.group('🔍 New File Modal Debug');
+    
+    // Check modal elements
+    const elements = {
+      fileModal: document.getElementById('newFileModal'),
+      closeModalBtn: document.querySelector('.close-modal'),
+      cancelBtn: document.querySelector('.cancel-btn'),
+      createFileBtn: document.querySelector('.create-btn'),
+      newFileName: document.getElementById('newFileName'),
+      fileType: document.getElementById('fileType')
+    };
+
+    console.log('Modal Elements:');
+    Object.entries(elements).forEach(([name, element]) => {
+      console.log(`${name}: ${element ? '✅ Found' : '❌ Missing'}`);
+    });
+
+    // Check event listeners
+    console.log('\nEvent Listener Check:');
+    if (elements.createFileBtn) {
+      console.log('Create File Button Event Listeners:', 
+        elements.createFileBtn.hasAttribute('data-listeners') ? '✅ Attached' : '❌ Not Attached');
+    }
+
+    console.groupEnd();
+  }
+
+  // Detailed preview debug
+  debugPreview() {
+    console.group('🖥️ Preview Debug');
+    
+    const previewContent = document.getElementById('previewContent');
+    const iframe = previewContent ? previewContent.querySelector('iframe') : null;
+    
+    console.log('Preview Container:', previewContent ? '✅ Found' : '❌ Missing');
+    console.log('Iframe in Preview:', iframe ? '✅ Exists' : '❌ Not Found');
+    
+    if (iframe) {
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        console.log('Iframe Content:', iframeDoc.body.innerHTML);
+      } catch (error) {
+        console.error('Cannot access iframe content:', error);
+      }
+    }
+    
+    console.groupEnd();
+  }
+
+  // Comprehensive system check
+  performFullSystemCheck() {
+    console.group('🔬 Full System Diagnostic');
+    
+    // Check core components
+    const components = {
+      headerComponent: this.appManager.headerComponent,
+      editorComponent: this.appManager.editorComponent,
+      commandComponent: this.appManager.commandComponent
+    };
+
+    console.log('Core Components:');
+    Object.entries(components).forEach(([name, component]) => {
+      console.log(`${name}: ${component ? '✅ Initialized' : '❌ Missing'}`);
+    });
+
+    // File system check
+    this.logFileOperations();
+    
+    // Modal debug
+    this.debugNewFileModal();
+    
+    // Preview debug
+    this.debugPreview();
+    
+    console.groupEnd();
+  }
+
+  // Add debug methods to global window for console access
+  attachGlobalDebugMethods() {
+    window.debugAppManager = {
+      logFiles: () => this.logFileOperations(),
+      checkModal: () => this.debugNewFileModal(),
+      checkPreview: () => this.debugPreview(),
+      fullSystemCheck: () => this.performFullSystemCheck()
+    };
+  }
+}
+
+
+// Modify AppManager to include debug functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait a bit to ensure AppManager is fully initialized
+  setTimeout(() => {
+    if (window.appManager) {
+      const appManagerDebugger = new AppManagerDebug(window.appManager);
+      appManagerDebugger.attachGlobalDebugMethods();
+      
+      // Optional: Perform initial system check
+      appManagerDebugger.performFullSystemCheck();
+    }
+  }, 100);
+});
 
 // Initialize on DOM load
 document.addEventListener('DOMContentLoaded', function() {
