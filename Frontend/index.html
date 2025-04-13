@@ -31,7 +31,9 @@
                 New Template
             </button>
             <!-- Existing download button and other controls -->
-        
+            <button id="openGeneralGenerator" class="custom-site-btn">✨ Generate Any Website</button>
+
+              
         <div class="controls-dropdown">
             <button id="controlsBtn" class="controls-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -96,6 +98,7 @@
             <div class="preview-content" id="previewContent"></div>
         </div>
     </div>
+    
 <!-- New File Modal -->
 <div class="file-modal" id="newFileModal">
     <div class="modal-content">
@@ -139,6 +142,128 @@
         </div>
       </div>
 
+      <!--  desigin model -->
+      <div class="modal" id="universalSiteModal">
+        <div class="modal-content universal-modal-content">
+          <div class="modal-header">
+            <h3>General Website Builder</h3>
+            <span class="close-modal" id="closeUniversalModal">&times;</span>
+          </div>
+          <div class="modal-body">
+            
+            <!-- Description - Full width -->
+            <div>
+              <label>1. What do you want to build?</label>
+              <textarea id="genDescription" placeholder="e.g. A SaaS dashboard with pricing, login, and contact page" rows="2"></textarea>
+            </div>
+      
+            <!-- Brand Color and Font in two columns -->
+            <div class="two-column-row">
+              <!-- Brand Color -->
+              <div>
+                <label>2. Brand Color:</label>
+                <div class="custom-color-picker">
+                  <div class="selected-color" id="selectedBrandColor" style="background-color: #00aaff;" data-color="#00aaff"></div>
+                  <div class="color-palette">
+                    <div class="color-swatch" style="background-color: #00aaff;" data-color="#00aaff"></div>
+                    <div class="color-swatch" style="background-color: #2196F3;" data-color="#2196F3"></div>
+                    <div class="color-swatch" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
+                    <div class="color-swatch" style="background-color: #F44336;" data-color="#F44336"></div>
+                    <div class="color-swatch" style="background-color: #9C27B0;" data-color="#9C27B0"></div>
+                    <div class="color-swatch" style="background-color: #FF9800;" data-color="#FF9800"></div>
+                    <div class="color-swatch" style="background-color: #607D8B;" data-color="#607D8B"></div>
+                    <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                  </div>
+                  <input type="hidden" id="genColor" value="#00aaff">
+                </div>
+              </div>
+              
+              <!-- Font Picker -->
+              <div>
+                <label>4. Font:</label>
+                <select id="genFont">
+                  <option value="Inter">Inter</option>
+                  <option value="Roboto">Roboto</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                </select>
+              </div>
+            </div>
+      
+            <!-- Gradient Colors - Full width but with two color pickers side by side -->
+            <div>
+              <label>3. Gradient Colors:</label>
+              <div class="two-column-row" style="margin-bottom: 5px !important;">
+                <!-- Start Color -->
+                <div>
+                  <div class="custom-color-picker">
+                    <div class="selected-color" id="selectedGradientStart" style="background-color: #00aaff;" data-color="#00aaff"></div>
+                    <div class="color-palette">
+                      <div class="color-swatch" style="background-color: #00aaff;" data-color="#00aaff"></div>
+                      <div class="color-swatch" style="background-color: #2196F3;" data-color="#2196F3"></div>
+                      <div class="color-swatch" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
+                      <div class="color-swatch" style="background-color: #F44336;" data-color="#F44336"></div>
+                      <div class="color-swatch" style="background-color: #9C27B0;" data-color="#9C27B0"></div>
+                      <div class="color-swatch" style="background-color: #FF9800;" data-color="#FF9800"></div>
+                      <div class="color-swatch" style="background-color: #607D8B;" data-color="#607D8B"></div>
+                      <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                    </div>
+                    <input type="hidden" id="genGradientStart" value="#00aaff">
+                  </div>
+                </div>
+                
+                <!-- End Color -->
+                <div>
+                  <div class="custom-color-picker">
+                    <div class="selected-color" id="selectedGradientEnd" style="background-color: #0083b0;" data-color="#0083b0"></div>
+                    <div class="color-palette">
+                      <div class="color-swatch" style="background-color: #0083b0;" data-color="#0083b0"></div>
+                      <div class="color-swatch" style="background-color: #2196F3;" data-color="#2196F3"></div>
+                      <div class="color-swatch" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
+                      <div class="color-swatch" style="background-color: #F44336;" data-color="#F44336"></div>
+                      <div class="color-swatch" style="background-color: #9C27B0;" data-color="#9C27B0"></div>
+                      <div class="color-swatch" style="background-color: #FF9800;" data-color="#FF9800"></div>
+                      <div class="color-swatch" style="background-color: #607D8B;" data-color="#607D8B"></div>
+                      <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                    </div>
+                    <input type="hidden" id="genGradientEnd" value="#0083b0">
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Remaining fields - all full width -->
+            <div>
+              <label>5. Hero Section</label>
+              <textarea id="genHero" placeholder="e.g. Welcome to MyApp – your all-in-one project management tool." rows="2"></textarea>
+            </div>
+            
+            <div>
+              <label>6. About Section</label>
+              <textarea id="genAbout" placeholder="e.g. We help teams collaborate with ease using modern tools and seamless integrations." rows="2"></textarea>
+            </div>
+            
+            <div>
+              <label>7. Features/Products</label>
+              <textarea id="genFeatures" placeholder="e.g. Kanban Boards, AI Assistance, Real-time Chat, Analytics Dashboard..." rows="2"></textarea>
+            </div>
+            
+            <div>
+              <label>8. Contact Section</label>
+              <textarea id="genContact" placeholder="e.g. Contact form, location map, email, and social media links." rows="2"></textarea>
+            </div>
+            
+            <div>
+              <label>9. Extra Notes</label>
+              <textarea id="genNotes" placeholder="e.g. Include testimonials, responsive layout, dark mode toggle..." rows="2"></textarea>
+            </div>
+            
+            <button id="generateUniversalSite" class="generate-btn" style="margin-top: 20px; width: 100%;">Generate Site</button>
+          </div>
+        </div>
+      </div>
 <!-- The template prompt popup will be created dynamically by JavaScript -->
 <!-- No need to add it directly to HTML -->
 

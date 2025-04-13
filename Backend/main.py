@@ -101,6 +101,7 @@ Important: Return ONLY the JavaScript code without any explanations, comments ab
     base_context = context_map.get(file_type, 'You are an expert web developer.')
     
     # Add UI/UX guidance
+   # Add UI/UX guidance
     ui_guidance = """
     UI/UX guidance:
     - Use a modern, clean aesthetic with appropriate white space
@@ -110,10 +111,13 @@ Important: Return ONLY the JavaScript code without any explanations, comments ab
     - Include responsive behaviors for all screen sizes
     - Add appropriate hover/focus states for interactive elements
     - Consider accessibility in all design decisions
-    
+    - For any image placeholder, do not add actual image files.
+    Instead, use a gray gradient box with centered descriptive text (e.g., 'Image Placeholder') styled appropriately.
+
     The resulting code should create a professional-looking UI that resembles
     high-quality websites and applications found in 2024.
     """
+
     
     # Add context awareness for existing code
     context_awareness = ""

@@ -654,6 +654,41 @@ const templateOptions = {
   
 
   };
+
+  //Gernal Template 
+  templateOptions.universal = {
+    name: "General Website",
+    description: "Generate any type of frontend by describing your idea and customizing sections.",
+    prompt: `Create a modern static website with the following settings:
+  
+  **Website Description**:
+  $description
+  
+  **Branding**:
+  - Primary Color: $color
+  - Gradient or Theme: $gradient
+  - Font Style: $font
+  
+  **Hero Section**:
+  $hero
+  
+  **About Section**:
+  $about
+  
+  **Features/Products**:
+  $features
+  
+  **Contact Section**:
+  $contact
+  
+  **Additional Notes**:
+  $notes
+  
+  Use responsive, mobile-first HTML/CSS/JS. Focus on a clean layout and elegant typography. Include smooth scrolling and transitions.`
+  };
+
+  
+  
   
   // Function to add template selection to UI
   function addTemplateSelectionToUI() {
@@ -906,8 +941,11 @@ function createTemplatePromptPopup() {
            <div class="template-card-body">${template.description}</div>
        `;
        
-       // Add click event to select this template
+       // Add click event to select this template (after user select his template)
+
+    
        templateCard.addEventListener("click", function() {
+        console.log('after prompt click ',key)
          selectTemplate(key);
          templateModal.classList.remove("show");
        });
@@ -936,7 +974,75 @@ function createTemplatePromptPopup() {
 document.addEventListener("DOMContentLoaded", function() {
    initTemplateModal();
 });
-  
+
+
   // Export for use in other files
   window.templateOptions = templateOptions;
   window.addTemplateSelectionToUI = addTemplateSelectionToUI;
+
+
+  //Js for Gernal Tempalte with UI 
+
+  function fillUniversalPrompt(template, data) {
+    return template
+      .replace(/\$description/g, data.description || "")
+      .replace(/\$color/g, data.color || "#3498db")
+      .replace(/\$gradient/g, data.gradient || "linear-gradient(to right, #3498db, #2ecc71)")
+      .replace(/\$font/g, data.font || "Inter")
+      .replace(/\$hero/g, data.hero || "")
+      .replace(/\$about/g, data.about || "")
+      .replace(/\$features/g, data.features || "")
+      .replace(/\$contact/g, data.contact || "")
+      .replace(/\$notes/g, data.notes || "");
+  }
+  //js for color picker
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Setup all custom color pickers
+    setupColorPicker('selectedBrandColor', 'genColor');
+    setupColorPicker('selectedGradientStart', 'genGradientStart');
+    setupColorPicker('selectedGradientEnd', 'genGradientEnd');
+    
+    // Close all color pickers when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.custom-color-picker')) {
+        document.querySelectorAll('.custom-color-picker').forEach(function(picker) {
+          picker.classList.remove('open');
+        });
+      }
+    });
+    
+    function setupColorPicker(selectedId, inputId) {
+      const selectedColor = document.getElementById(selectedId);
+      const hiddenInput = document.getElementById(inputId);
+      const colorPicker = selectedColor.closest('.custom-color-picker');
+      
+      // Toggle palette visibility when clicking on selected color
+      selectedColor.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        // Close other pickers
+        document.querySelectorAll('.custom-color-picker').forEach(function(picker) {
+          if (picker !== colorPicker) {
+            picker.classList.remove('open');
+          }
+        });
+        
+        // Toggle this picker
+        colorPicker.classList.toggle('open');
+      });
+      
+      // Add click handlers to color swatches
+      colorPicker.querySelectorAll('.color-swatch').forEach(function(swatch) {
+        swatch.addEventListener('click', function(e) {
+          const color = this.getAttribute('data-color');
+          selectedColor.style.backgroundColor = color;
+          selectedColor.setAttribute('data-color', color);
+          hiddenInput.value = color;
+          colorPicker.classList.remove('open');
+        });
+      });
+    }
+  });
+  window.fillUniversalPrompt = fillUniversalPrompt;
+  

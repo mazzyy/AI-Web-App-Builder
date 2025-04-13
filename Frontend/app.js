@@ -912,5 +912,49 @@ document.addEventListener('DOMContentLoaded', function() {
   window.appManager = new AppManager();
 });
 
+// design new templates 
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("universalSiteModal");
+  const openBtn = document.getElementById("openGeneralGenerator");
+  const closeBtn = document.getElementById("closeUniversalModal");
+  const genBtn = document.getElementById("generateUniversalSite");
+
+  if (openBtn) openBtn.onclick = () => modal.classList.add("show");
+  if (closeBtn) closeBtn.onclick = () => modal.classList.remove("show");
+  window.onclick = (e) => e.target === modal && modal.classList.remove("show");
+
+  genBtn.onclick = () => {
+    const values = {
+      description: document.getElementById("genDescription").value,
+      color: document.getElementById("genColor").value,
+      gradient: `linear-gradient(to right, ${document.getElementById("genGradientStart").value}, ${document.getElementById("genGradientEnd").value})`,
+
+      font: document.getElementById("genFont").value,
+      hero: document.getElementById("genHero").value,
+      about: document.getElementById("genAbout").value,
+      features: document.getElementById("genFeatures").value,
+      contact: document.getElementById("genContact").value,
+      notes: document.getElementById("genNotes").value
+    };
+
+    const base = templateOptions.universal.prompt;
+    const prompt = fillUniversalPrompt(base, values);
+
+    const promptInput = document.getElementById("promptInput");
+    const textarea = document.getElementById("prompt-popup-textarea");
+
+    if (promptInput && textarea) {
+      promptInput.value = prompt;
+      textarea.value = prompt;
+
+      const appManager = window.appManager;
+      if (appManager?.generateCode) {
+        appManager.generateCode(prompt);
+      }
+    }
+
+    modal.classList.remove("show");
+  };
+});
 
 
