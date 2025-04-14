@@ -1194,3 +1194,49 @@ body {
   .two-column-row .custom-color-picker {
     width: 100% !important;
   }
+
+
+  @media (max-width: 768px) {
+    .main-container {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .sidebar, .editor-container, .preview-container {
+      width: 100%;
+      height: auto;
+    }
+  
+    .sidebar {
+      order: 1;
+    }
+  
+    .editor-container {
+      order: 2;
+    }
+  
+    .preview-container {
+      order: 3;
+    }
+  
+    .code-editor, .line-numbers {
+      max-height: 300px;
+    }
+  
+    .project-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      position: static;
+      padding: 10px;
+    }
+  
+    .editor-tabs {
+      flex-wrap: wrap;
+    }
+  
+    .preview-container iframe {
+      height: 400px;
+    }
+  }
+  

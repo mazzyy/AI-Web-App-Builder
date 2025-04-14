@@ -489,33 +489,78 @@ initModalEvents() {
   }
 
   // Download the entire project as zip
-  async downloadProject() {
-    try {
-      // Create a new JSZip instance directly
-      const zip = new JSZip();
-      
-      // Add all files to the zip
-      for (const [fileName, fileData] of Object.entries(this.projectFiles)) {
-        zip.file(fileName, fileData.content);
-      }
-      
-      // Generate and download the zip
-      const content = await zip.generateAsync({type: "blob"});
-      
-      // Create download link and trigger download
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(content);
-      downloadLink.download = "web-project.zip";
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      
-      this.showNotification("Project downloaded successfully");
-    } catch (error) {
-      console.error("Download error:", error);
-      this.showNotification("Error downloading project: " + error.message, "error");
+//  async downloadProject() {
+//   try {
+//     const zip = new JSZip();
+
+//     // Add files to ZIP
+//     for (const [fileName, fileData] of Object.entries(this.projectFiles)) {
+//       zip.file(fileName, fileData.content);
+//     }
+
+//     // Generate ZIP blob
+//     const content = await zip.generateAsync({ type: "blob" });
+
+//     // Create a blob URL
+//     const blobUrl = URL.createObjectURL(content);
+
+//     // Create a download link
+//     const downloadLink = document.createElement("a");
+//     downloadLink.href = blobUrl;
+//     downloadLink.download = "web-project.zip";
+//     downloadLink.style.display = "none"; // Ensure it's not visible
+
+//     // Append, click, and remove
+//     document.body.appendChild(downloadLink);
+//     setTimeout(() => {
+//       downloadLink.click();
+//       URL.revokeObjectURL(blobUrl); // Free up memory
+//       downloadLink.remove();
+//     }, 100); // Give DOM time to process
+
+//     this.showNotification("Project downloaded successfully");
+//   } catch (error) {
+//     console.error("Download error:", error);
+//     this.showNotification("Error downloading project: " + error.message, "error");
+//   }
+// }
+async downloadProject() {
+  try {
+    const zip = new JSZip();
+
+    // Add files to ZIP
+    for (const [fileName, fileData] of Object.entries(this.projectFiles)) {
+      zip.file(fileName, fileData.content);
     }
+
+    // Generate ZIP blob
+    const content = await zip.generateAsync({ type: "blob" });
+
+    // Create a blob URL
+    const blobUrl = URL.createObjectURL(content);
+
+    // Create a download link
+    const downloadLink = document.createElement("a");
+    downloadLink.href = blobUrl;
+    downloadLink.download = "web-project.zip";
+    downloadLink.style.display = "none"; // Ensure it's not visible
+
+    // Append, click, and remove
+    document.body.appendChild(downloadLink);
+    setTimeout(() => {
+      downloadLink.click();
+      URL.revokeObjectURL(blobUrl); // Free up memory
+      downloadLink.remove();
+    }, 100); // Give DOM time to process
+
+    this.showNotification("Project downloaded successfully");
+  } catch (error) {
+    console.error("Download error:", error);
+    this.showNotification("Error downloading project: " + error.message, "error");
   }
+}
+
+  
 
   // Download a single file
   downloadFile(fileName) {
