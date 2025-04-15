@@ -12,7 +12,7 @@
     height: 100%;
     overflow-x: auto;
     tab-size: 4;
-    background-color: #1e1e1e;
+    background-color: #181825
 }
 
 /* Color themes for different file types */
@@ -46,7 +46,7 @@
     padding: 15px 20px;
     border-radius: 4px;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(15, 3, 68, 0.2);
     transition: opacity 0.5s;
 }
 
@@ -79,8 +79,8 @@
     }
 }/* Dark theme styles - similar to code editor */
 :root {
-    --bg-dark: #1e1e1e;
-    --bg-darker: #121212;
+    --bg-dark: #11111b;
+    --bg-darker: #0b0b14;
     --bg-lighter: #252526;
     --text-light: #e0e0e0;
     --text-muted: #6c757d;
@@ -1148,16 +1148,22 @@ body {
     transition: transform 0.1s ease;
     border: 2px solid transparent;
   }
+  .color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
   
   .color-swatch:hover {
     transform: scale(1.1);
     border-color: white;
   }
-
-
-  /* Make the modal wider */
-/* Universal Modal Scroll Fix */
-.universal-modal-content {
+  
+  /* Universal Modal Scroll Fix */
+  .universal-modal-content {
     max-height: 90vh;
     overflow: hidden;
     display: flex;
@@ -1194,8 +1200,7 @@ body {
   .two-column-row .custom-color-picker {
     width: 100% !important;
   }
-
-
+  
   @media (max-width: 768px) {
     .main-container {
       flex-direction: column;
@@ -1239,4 +1244,5 @@ body {
       height: 400px;
     }
   }
+
   
