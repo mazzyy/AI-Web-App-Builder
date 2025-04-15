@@ -787,46 +787,119 @@ document.addEventListener('DOMContentLoaded', function() {
   // Get default HTML content
   getDefaultHtmlContent() {
     return `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>AI Web Builder</title>
+      <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-            color: #333;
-            text-align: center;
+          margin: 0;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: linear-gradient(to right, #121212, #1e1e1e);
+          color: #e0e0e0;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          flex-direction: column;
+          position: relative;
         }
-        h1 {
-            color: #0066ff;
-            margin-bottom: 1rem;
+        
+        .headline {
+          font-size: 2.5rem;
+          font-weight: 600;
+          color: #00aaff;
         }
-        span {
-            display: block;
-            color: #666;
+        
+        .subline {
+          font-size: 1.1rem;
+          color: #bbbbbb;
+          margin: 10px 0 20px;
         }
-        img {
-            margin-top: 2rem;
-            width: 50px;
-            height: 50px;
+        
+        .pulse {
+          width: 40px;
+          height: 40px;
+          background: #00aaff;
+          border-radius: 50%;
+          animation: pulse 2s infinite ease-in-out;
+          margin-top: 30px;
         }
-    </style>
-</head>
-<body>
-    <h1>
-        <span>I'm ready to work,</span>
-        Ask me anything.
-    </h1>
-    <p>Type your website description in the command area below and click Generate</p>
-    <img src="arrow.svg">
-    <script></script>
-</body>
-</html>`;
+        @keyframes pulse {
+          0%   { transform: scale(1);   opacity: 1; }
+          100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        /* Arrow container */
+        .arrow {
+          position: fixed;
+          bottom: 15px;           /* above the Generate button */
+          left: 70px;             /* near left side to point right */
+          width: 48px;
+          height: 48px;
+          animation: bounce 1.5s infinite;
+          z-index: 10;
+        }
+        /* Horizontal bounce */
+        @keyframes bounce {
+          0%, 100% { transform: translateX(0); }
+          50%      { transform: translateX(8px); }
+        }
+    
+        /* Tooltip text (optional) */
+        .tooltip {
+          position: fixed;
+          bottom: 120px;
+          left: 20px;
+          color: #ccc;
+          font-size: 12px;
+          font-style: italic;
+        }
+    
+        /* SVG arrow drawing */
+        .arrow svg {
+          width: 100%;
+          height: 100%;
+          fill: none;
+          stroke: #00aaff;
+          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+      </style>
+    </head>
+    <body>
+      <div>
+        <div class="headline">Let’s build something amazing.</div>
+        <div class="subline">Describe your website below and click <strong>Generate</strong></div>
+        <div class="pulse"></div>
+      </div>
+    
+      <!-- (Optional) Tooltip above the arrow -->
+      <div class="tooltip">Click Generate </div>
+    
+      <!-- 
+           The arrow with a single pivot on the left:
+           - Middle line (straight right) 
+           - Upper line (diagonal up)
+           - Lower line (diagonal down)
+      -->
+      <div class="arrow">
+        <svg viewBox="0 0 20 24">
+          <!-- 
+               Lines from (2,12) => pivot
+                 - to (14,12)  (straight line to the right)
+                 - to (6,8)    (up/left)
+                 - to (6,16)   (down/left)
+          -->
+          <path d="M2 12 L14 12 M2 12 L6 8 M2 12 L6 16" />
+        </svg>
+      </div>
+    </body>
+    </html>`;
+    
   }
 }
 
