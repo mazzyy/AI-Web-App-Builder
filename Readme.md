@@ -17,7 +17,9 @@ Generate web code instantly using AI-powered natural language prompts!
 # Templates and Design
 ![alt text](image-2.png)
 select and modify templates
-
+ # Design from Screch 
+![alt text](image-3.png)
+rather then selecting template user select options to build 
 ## ✨ Current Features
 
 🚀 AI-powered code generation

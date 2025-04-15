@@ -9,6 +9,9 @@
     <!-- Import JSZip and FileSaver.js for downloading projects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style >
+      
+    </style>
 </head>
 <body class="dark-theme">
     <!-- Project controls -->
@@ -30,7 +33,7 @@
                 </svg>
                 New Template
             </button>
-            <button id="openGeneralGenerator" class="custom-site-btn">✨ Generate Any Website</button>
+            <button id="openGeneralGenerator" class="custom-site-btn">✨ Design Website</button>
             <!-- Existing download button and other controls -->
            
 
@@ -166,7 +169,7 @@
                 <div class="custom-color-picker">
                   <div class="selected-color" id="selectedBrandColor" style="background-color: #00aaff;" data-color="#00aaff"></div>
                   <div class="color-palette">
-                    <div class="color-swatch" style="background-color: #00aaff;" data-color="#00aaff"></div>
+                    <div class="color-swatch" style="background-color: #0083b0;" data-color="#0083b0"></div>
                     <div class="color-swatch" style="background-color: #2196F3;" data-color="#2196F3"></div>
                     <div class="color-swatch" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
                     <div class="color-swatch" style="background-color: #F44336;" data-color="#F44336"></div>
@@ -174,6 +177,16 @@
                     <div class="color-swatch" style="background-color: #FF9800;" data-color="#FF9800"></div>
                     <div class="color-swatch" style="background-color: #607D8B;" data-color="#607D8B"></div>
                     <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                  
+                    <!-- Additional Colors -->
+                    <div class="color-swatch" style="background-color: #FFFFFF;" data-color="#FFFFFF"></div>
+                    <div class="color-swatch" style="background-color: #C0C0C0;" data-color="#C0C0C0"></div>
+                    <div class="color-swatch" style="background-color: #FFEB3B;" data-color="#FFEB3B"></div>
+                    <div class="color-swatch" style="background-color: #E91E63;" data-color="#E91E63"></div>
+                    <div class="color-swatch" style="background-color: #795548;" data-color="#795548"></div>
+                    <div class="color-swatch" style="background-color: #673AB7;" data-color="#673AB7"></div>
+                    <div class="color-swatch" style="background-color: #3F51B5;" data-color="#3F51B5"></div>
+                    <div class="color-swatch" style="background-color: #9E9E9E;" data-color="#9E9E9E"></div>
                   </div>
                   <input type="hidden" id="genColor" value="#00aaff">
                 </div>
@@ -202,7 +215,8 @@
                   <div class="custom-color-picker">
                     <div class="selected-color" id="selectedGradientStart" style="background-color: #00aaff;" data-color="#00aaff"></div>
                     <div class="color-palette">
-                      <div class="color-swatch" style="background-color: #00aaff;" data-color="#00aaff"></div>
+                      <!-- Original Colors -->
+                      <div class="color-swatch" style="background-color: #0083b0;" data-color="#0083b0"></div>
                       <div class="color-swatch" style="background-color: #2196F3;" data-color="#2196F3"></div>
                       <div class="color-swatch" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
                       <div class="color-swatch" style="background-color: #F44336;" data-color="#F44336"></div>
@@ -210,6 +224,16 @@
                       <div class="color-swatch" style="background-color: #FF9800;" data-color="#FF9800"></div>
                       <div class="color-swatch" style="background-color: #607D8B;" data-color="#607D8B"></div>
                       <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                    
+                      <!-- Additional Colors -->
+                      <div class="color-swatch" style="background-color: #FFFFFF;" data-color="#FFFFFF"></div>
+                      <div class="color-swatch" style="background-color: #C0C0C0;" data-color="#C0C0C0"></div>
+                      <div class="color-swatch" style="background-color: #FFEB3B;" data-color="#FFEB3B"></div>
+                      <div class="color-swatch" style="background-color: #E91E63;" data-color="#E91E63"></div>
+                      <div class="color-swatch" style="background-color: #795548;" data-color="#795548"></div>
+                      <div class="color-swatch" style="background-color: #673AB7;" data-color="#673AB7"></div>
+                      <div class="color-swatch" style="background-color: #3F51B5;" data-color="#3F51B5"></div>
+                      <div class="color-swatch" style="background-color: #9E9E9E;" data-color="#9E9E9E"></div>
                     </div>
                     <input type="hidden" id="genGradientStart" value="#00aaff">
                   </div>
@@ -220,6 +244,7 @@
                   <div class="custom-color-picker">
                     <div class="selected-color" id="selectedGradientEnd" style="background-color: #0083b0;" data-color="#0083b0"></div>
                     <div class="color-palette">
+                      <!-- Original Colors -->
                       <div class="color-swatch" style="background-color: #0083b0;" data-color="#0083b0"></div>
                       <div class="color-swatch" style="background-color: #2196F3;" data-color="#2196F3"></div>
                       <div class="color-swatch" style="background-color: #4CAF50;" data-color="#4CAF50"></div>
@@ -228,7 +253,18 @@
                       <div class="color-swatch" style="background-color: #FF9800;" data-color="#FF9800"></div>
                       <div class="color-swatch" style="background-color: #607D8B;" data-color="#607D8B"></div>
                       <div class="color-swatch" style="background-color: #000000;" data-color="#000000"></div>
+                    
+                      <!-- Additional Colors -->
+                      <div class="color-swatch" style="background-color: #FFFFFF;" data-color="#FFFFFF"></div>
+                      <div class="color-swatch" style="background-color: #C0C0C0;" data-color="#C0C0C0"></div>
+                      <div class="color-swatch" style="background-color: #FFEB3B;" data-color="#FFEB3B"></div>
+                      <div class="color-swatch" style="background-color: #E91E63;" data-color="#E91E63"></div>
+                      <div class="color-swatch" style="background-color: #795548;" data-color="#795548"></div>
+                      <div class="color-swatch" style="background-color: #673AB7;" data-color="#673AB7"></div>
+                      <div class="color-swatch" style="background-color: #3F51B5;" data-color="#3F51B5"></div>
+                      <div class="color-swatch" style="background-color: #9E9E9E;" data-color="#9E9E9E"></div>
                     </div>
+                    
                     <input type="hidden" id="genGradientEnd" value="#0083b0">
                   </div>
                 </div>
